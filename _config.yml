@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://mjwall.github.io
+url: http://mjwall.com
 title: mjwall.com
 subtitle: Just a guy and his computer
 author: Michael Wall
@@ -73,7 +73,7 @@ twitter_user: mjwalldotcom
 twitter_tweet_button: true
 
 # Google +1
-google_plus_one: false
+google_plus_one: true
 google_plus_one_size: medium
 
 # Google Plus Profile
