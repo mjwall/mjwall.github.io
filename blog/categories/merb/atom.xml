@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: merb | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/merb/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Merb Notes]]></title>
+    <link href="http://mjwall.com/blog/2008/04/02/merb-notes/"/>
+    <updated>2008-04-02T13:55:00-04:00</updated>
+    <id>http://mjwall.com/blog/2008/04/02/merb-notes</id>
+    <content type="html"><![CDATA[<p>Since my last post, I have been looking more and more at Merb.  Just some random notes</p>
+
+<ul>
+<li><p>Looks like Merb 0.9.2 got some fcgi <a href="http://github.com/wycats/merb-more/commit/b5467e5138b8c18c0c521a5fce5ea529f1a090d6">love</a>. That is what I want to try to replace rails on my shared host.</p></li>
+<li><p>Get on IRC if you need help – irc.freenode.net#merb.  Really, IRC.</p></li>
+<li><p>If you can’t stay on IRC, go to <a href="http://groups.google.com/group/merb">http://groups.google.com/group/merb</a> for a log</p></li>
+<li><p>Use these <a href="http://www.gweezlebur.com/2008/3/1/quickie-sake-tasks-for-merb-hackers">sake</a> tasks if you are running the latest.  <code>sudo sake merb:update merb:install</code> will update core, more and plugins</p></li>
+<li><p>merb-rspec is no longer in plugins, but included in core</p></li>
+<li><p>Watch this from <a href="http://mtnwestrubyconf2008.confreaks.com/02zygmuntowicz.html">Confreaks</a>.  Worth the investment.</p></li>
+<li><p>Most tutorials and articles are dated.  <a href="http://crazycool.co.uk/blog/2008/3/17/Adventures+in+Merb/">This</a> one helped though.</p></li>
+</ul>
+
+
+<p>Looking forward to more from merb….</p>
+
+<p>UPDATE:  Having some trouble with typo’s caching.  Going to repost this article.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Shared Hosting and a little Merb]]></title>
+    <link href="http://mjwall.com/blog/2008/03/05/rails-shared-hosting-and-a-little-merb/"/>
+    <updated>2008-03-05T09:30:00-05:00</updated>
+    <id>http://mjwall.com/blog/2008/03/05/rails-shared-hosting-and-a-little-merb</id>
+    <content type="html"><![CDATA[<p>It has taken me almost 2 months to put this post together, but at the time, DHH’s <a href="http://www.loudthinking.com/posts/21-the-deal-with-shared-hosts">article</a> on shared hosting support for Rail was very timely.  I use shared hosting to run this blog and have had some headaches. <a href="http://www.rubyinside.com/no-true-mod_ruby-is-damaging-rubys-viability-on-the-web-693.html">This</a> is another great post on the subject.  Lots, and I mean lots, of interesting comments.  Part of those 2 months was getting through those comments.</p>
+
+<p>So what can we do?  <a href="http://rubini.us/">Rubinius</a> / <a href="http://brainspl.at/articles/2008/02/12/what-do-you-want-to-see-in-mod_rubinius">mod_rubinus</a> seem really interesting.  Long term, this may be a great solution.  More immediately, I am intrigued by <a href="http://rack.rubyforge.org/">Rack</a>.  Rack is just a webserver abstraction and would not solve the lack of threading in Rails though.  But there is a Rack adapter built into <a href="http://www.merbivore.com/">Merb</a>, which is thread safe.  I will be spending some time looking into Merb and I’ll document my investigation here.</p>
+
+<p>So what headaches have I had with shared hosting.  Only a few, because this site doesn’t get much traffic.  Here are some details about my setup <em>(warning, here comes an ad)</em>.  I have the “Small” plan from <a href="http://refer.asmallorange.com/10815">asmallorange</a> (ASO).  The price is very reasonable and the features are good:  SSH access, Rails support, unlimited mail accounts, unlimited mysql databases, unlimited subdomains and many other features.  Support has been great, they have installed every gem I have asked for within minutes without a hard time, even <a href="http://code.whytheluckystiff.net/camping/">Camping</a> but that is a story for another time.  ASO also has a reseller plan so you can sell off part of your hosting and make a little money.  Ok, back to the post.</p>
+
+<p>So what problems have I had with shared hosting?  Like most shared hosts ASO uses FastCGI to support Rails.  Mongrel is too expensive in a shared hosting environment.  My problems have been with FastCGI and limits ASO has in place.  They allow 5 instances of FastCGI to run concurrently.  Again, no problem with the amount of traffic I get.  However, idle instances die after 4 minutes.  So at some point, all my instances die and the next request has to startup FastCGI and then serve the page.  It can take 2 minutes, which is too long.  There are some reaper and spinner scripts in Rails, but I don’t have enough permissions on my server to run them.</p>
+
+<p>Another problem I had came from wanting to mimic my production environment as closely as possible on my laptop.  I tried in vain to install Apache with FastCGI.  Yes, it is windows and I was using Cygwin, but after 2 weeks of off and on install and configuration failures, I gave up.</p>
+
+<p>If FastCGI is running, I have had no complaints with performance.  You can judge that for yourself.  I don’t fault ASO either.  The restrictions they place on FastCGI make sense for their business model.  Shared hosting for Rails is hard, and I think they have done a good job accommodating the community so far.  I would recommend them if you want to support for multiple languages, if you are looking for really inexpensive hosting, and if you understand what you are getting into.  Certainly they are good as <a href="http://blog.dreamhost.com/2008/01/07/how-ruby-on-rails-could-be-much-better/">Dreamhost</a>
+All the other Rails apps I work on are run with mongrel clusters.  Currently, I think that is best option for production sites with a decent or even large amounts of traffic.  I’ll be interested to see if Ezra recommends anything else in his new <a href="http://brainspl.at/articles/2008/02/21/at-long-last-my-deploying-rails-applications-book-is-done">book</a></p>
+]]></content>
+  </entry>
+  
+</feed>

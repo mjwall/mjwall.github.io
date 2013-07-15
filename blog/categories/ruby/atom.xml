@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Switching to Octopress]]></title>
+    <link href="http://mjwall.com/blog/2013/07/13/switching-to-octopress/"/>
+    <updated>2013-07-13T22:54:00-04:00</updated>
+    <id>http://mjwall.com/blog/2013/07/13/switching-to-octopress</id>
+    <content type="html"><![CDATA[<p>Switching to Octopress, see <a href="http://octopress.org/">http://octopress.org/</a>.  I haven&rsquo;t blogged
+in a long time, but I wanted to start again.  Got some emacs stuff I&rsquo;d
+like to get out.  Anyway, here are some notes on my conversion.</p>
+
+<ul>
+<li><p>Theme is Greyshade, see <a href="https://github.com/shashankmehta/greyshade">https://github.com/shashankmehta/greyshade</a>.
+My color is #0020C2, see
+<a href="https://github.com/shashankmehta/greyshade/wiki/Sites-using-Greyshade">https://github.com/shashankmehta/greyshade/wiki/Sites-using-Greyshade</a>.
+I really like the mobile format baked into the theme.</p></li>
+<li><p>Exported old wordpress content with
+<a href="https://github.com/thomasf/exitwp">https://github.com/thomasf/exitwp</a>.  Worked great, after I cleaned up
+the xmllint errors.  Looks like there was a few formatting issues,
+but I don&rsquo;t care enough to fix them.</p></li>
+<li><p>Found alias generator plugin for Jekyll at
+<a href="https://github.com/tsmango/jekyll_alias_generator.">https://github.com/tsmango/jekyll_alias_generator.</a>  Just copied the
+alias_generator.rb into the plugins directory and added something
+like the following to the yaml section of every old post.  Allows
+the old links to still work, in case anyone had linked to me.</p>
+
+<p><code>alias: /original/link/from/wp/blog</code></p></li>
+<li><p>Thought about migrating all the old comments over and using
+something like <a href="http://disqus.com/">http://disqus.com/</a>.  In the end, I decided not
+to enable comments at all.  Hit me up on twitter or google+ if you
+really have something to say.</p></li>
+</ul>
+
+
+<p>So far, this has been really easy.  I like it a lot.  Nice to be using
+ruby again.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Back to Java]]></title>
+    <link href="http://mjwall.com/blog/2008/12/23/back-to-java/"/>
+    <updated>2008-12-23T09:23:43-05:00</updated>
+    <id>http://mjwall.com/blog/2008/12/23/back-to-java</id>
+    <content type="html"><![CDATA[<p>All good things must come to an end.  After doing Ruby development professionally for almost 2 years, I decided to change jobs and went back to my Java roots.</p>
+
+<p>So I would like to detail some of the things I have missed noticed in the couple of months I have been back.</p>
+
+<p><strong>Productivity</strong>, everything just seems to take longer with Java.  Maybe I am just rusty, or maybe is the a combination of some of the other things listed here</p>
+
+<p><strong>Convention</strong>, there are too many choices I have to make and too many things I have to decide that distract me from writing the code.  Before I went to Ruby, I was an ant guy.  Now I am using maven and I think I like it.  The out of the box convention just feels better.  Still not sure about the dependency management though</p>
+
+<p><strong>Not needing an IDE</strong>, Vim and I have been friends for a long time and our friendship grew during my time as a Ruby developer.  Now that I am back to Java, I keep getting pulled toward an IDE again.  I used eclipse in the past, but I thinking I will go with IntelliJ.</p>
+
+<p><strong>Libraries</strong>, I forgot how many libraries there are.  It is nice to have a choice, but it sure adds time.</p>
+
+<p><strong>BDD/TDD</strong>, takes a lot longer.  I keep preaching, but it takes so much more effort the by in is just not there.</p>
+
+<p><strong>IRB</strong>, wow do I miss you.</p>
+
+<p><strong>Class Design</strong> is certainly different(better?)  I think part if it come trying to make to make things more testable and part of it comes from more focus on the DRY principle.</p>
+
+<p>I&rsquo;ll post more comments as I go.  Be on the lookout for Grails posts, as I just started rewriting a rest service with it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cruisecontrolrb, git and rails 2.1]]></title>
+    <link href="http://mjwall.com/blog/2008/08/18/cruisecontrolrb-git-and-rails-21/"/>
+    <updated>2008-08-18T19:44:06-04:00</updated>
+    <id>http://mjwall.com/blog/2008/08/18/cruisecontrolrb-git-and-rails-21</id>
+    <content type="html"><![CDATA[<p>I really love cruisecontrol.rb in a team environment.  The ability to run tests against every commit is great, and it is such fun being the &ldquo;build police&rdquo;.</p>
+
+<blockquote><p>Excuse me sir, can I see your license to commit please?</p></blockquote>
+
+<p>We can have some fun with that one.</p>
+
+<blockquote><p>This license expired just before the dotcom bubble</p>
+
+<p>You have a languague restriction here that says you can commit only while wearing vb.net</p>
+
+<p>I need to see some proof of build collision insurance.</p></blockquote>
+
+<p>But I digress. Sorry, back to the program.</p>
+
+<p>As rails grows, I have some questions.</p>
+
+<ol>
+<li><p> Where the heck is code for cruise control?</p></li>
+<li><p> Can I use git?</p></li>
+<li><p> Will it run against rails 2.1 since I am security conscience and have updated after the recent <a href="http://www.ruby-lang.org/en/news/2008/06/20/arbitrary-code-execution-vulnerabilities/">warnings</a> and <a href="http://www.ruby-lang.org/en/news/2008/08/08/multiple-vulnerabilities-in-ruby/">threats</a>?</p></li>
+</ol>
+
+
+<p>Let&rsquo;s do some research.  The code used to be at <a href="http://rubyforge.org/projects/cruisecontrolrb/">rubyforge</a>.  Looks like the code is still there.  However, according to this <a href="http://rubyforge.org/pipermail/cruisecontrolrb-users/2008-August/000560.html">post</a>, they are moving to github.  The link in that post has an extra *, but sure enough, you can find cruisecontrol.rb at <a href="http://github.com/thoughtworks/cruisecontrol.rb">http://github.com/thoughtworks/cruisecontrol.rb</a>.  Cool, now I know where to get it.</p>
+
+<p>What about git support?  A <a href="http://www.google.com/search?hl=en&amp;q=cruisecontrolrb+git&amp;btnG=Google+Search">google search</a>, turns up <a href="http://github.com/benburkert/cruisecontrolrb/tree/master">benburkert</a>&rsquo;s github branch.  Looks promising.  Searching git hub for <a href="http://github.com/search?q=cruisecontrolrb">cruisecontrol.rb</a> shows several forks, but these are all from rubyforge git.  I want it straight from thoughtworks.  Digging a little in the code shows it is already in the thoughtworks master.  There is even a mercurial adapter.  Let&rsquo;s give it a try.  Sure enough, it works just fine with</p>
+
+<pre><code>cruise add projectname -r file:///home/me/src/gitproject -s git
+</code></pre>
+
+<p>Run</p>
+
+<pre><code>cruise help add
+</code></pre>
+
+<p>for all the options.</p>
+
+<p>Great, 2 for 2.  Now what about support for Rails 2.1?   Unfortunately, it is not there.  Cruisecontrol.rb currently runs with rails 1.2.3, and a simple version change in environment.rb doesn&rsquo;t fix it.  (Didn&rsquo;t figure it would but I had to try it right?)   For all of us who have updated to ruby 1.8.7, we are stuck for now.  Ruby 1.8.7 only runs rails 2.1.  My <a href="http://www.mjwall.com/2008/08/multiple-versions-of-ruby-with-stow/">last</a> post about multiple version of ruby doesn&rsquo;t really help either.</p>
+
+<p>I did find this post answered by the team about porting cruisecontrol to <a href="http://www.nabble.com/Re:-Plans-to-upgrade-to-Rails-2.1--td18115378.html">merb</a>.  That sounds interesting indeed.</p>
+
+<p>Until then, who is working on a rails 2.1 version of cruisecontrol.rb?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Multiple versions of ruby with stow]]></title>
+    <link href="http://mjwall.com/blog/2008/08/16/multiple-versions-of-ruby-with-stow/"/>
+    <updated>2008-08-16T18:48:24-04:00</updated>
+    <id>http://mjwall.com/blog/2008/08/16/multiple-versions-of-ruby-with-stow</id>
+    <content type="html"><![CDATA[<p>What is the best way to support multiple versions of ruby?</p>
+
+<p>Some options:</p>
+
+<ul>
+<li><p><a href="http://www.zenspider.com/ZSS/Products/ZenTest/#rsn">Multiruby</a> looks like it may do what I want.  I already have it installed, because I am autotest-addicted (first coined by <a href="http://drnicwilliams.com/2008/02/19/one-stop-javascript-unit-testing-for-rails2/">Dr Nic</a>.</p></li>
+<li><p>Michael Greenly posted <a href="http://blog.michaelgreenly.com/2007/12/multiple-ruby-version-on-ubuntu.html">this</a>, which would work since I am running ubuntu.</p></li>
+<li><p>A buddy recommended <a href="http://www.gnu.org/software/stow/manual.html">GNU Stow</a>.</p></li>
+</ul>
+
+
+<p>I chose to use stow.  Call me old fashion, but I really prefer doing things be hand.  I didn&rsquo;t like the thought of having to type ruby1.8.6 vs ruby1.8.7 proposed by Michael Greenly, but I did pick up a few things from his article.  I am interested in the testing against multiple version like multiruby provides.  However, the main reason I want different ruby installs is because different clients have different environments.  So here is how I did it.  For reference, I am using Ubuntu 8.0.4.</p>
+
+<ol>
+<li> <strong>Remove all ubuntu ruby packages.</strong></li>
+</ol>
+
+
+<p>Use</p>
+
+<pre><code>dpkg --list | grep -i ruby
+</code></pre>
+
+<p>to find all the packages you have installed.  Then use</p>
+
+<pre><code>sudo apt-get remove &lt;em&gt;packagename&lt;/em&gt;
+</code></pre>
+
+<p>to remove those packages.  We are going to build all of these by hand.</p>
+
+<ol>
+<li> <strong>Make sure you have the ubuntu build packages</strong></li>
+</ol>
+
+
+<p>Run the following to make sure you have packages necessary to build ruby with</p>
+
+<pre><code>sudo apt-get build-dep ruby1.8
+</code></pre>
+
+<p>This will install stuff like autoconf and automake if you don&rsquo;t already have them.</p>
+
+<ol>
+<li> <strong>Setup your filesystem for stow.</strong></li>
+</ol>
+
+
+<p>Let&rsquo;s first make a directory under /usr/local named stow with</p>
+
+<pre><code>sudo mkdir /usr/local/stow
+</code></pre>
+
+<p>We will install everything here and then use stow to create symlinks in /usr/local/bin. Also, change the directory permission for /usr/local/stow so you can install stuff there as your user.  This has the added benefit of alerting you if you configure wrong or try to overwrite something.  We will only need to sudo to run the stow command.  Run the following to see what groups you are in</p>
+
+<pre><code>groups username
+</code></pre>
+
+<p>Hopefully there will be a dev or adm or something similiar.  I will use the adm group.  Run the following to change the group and permissions on /usr/local/stow.</p>
+
+<pre><code>sudo chgrp -R adm /usr/local/stow
+</code></pre>
+
+<p>and</p>
+
+<pre><code>chmod -R 775 /usr/local/stow
+</code></pre>
+
+<ol>
+<li> <strong>Install stow</strong></li>
+</ol>
+
+
+<p>Download the stow package with from <a href="ftp://mirrors.kernel.org/gnu/stow/stow-1.3.3.tar.gz.">ftp://mirrors.kernel.org/gnu/stow/stow-1.3.3.tar.gz.</a>  Then</p>
+
+<pre><code>tar -zxf stow-1.3.3.tar.gz
+</code></pre>
+
+<p>to extract everything.  Go into the directory and then run the following.</p>
+
+<pre><code>./configure --prefix=/usr/local
+</code></pre>
+
+<p>Then install it with make and sudo make install</p>
+
+<p>I considered installing stow under the stow directory but figured it was overkill</p>
+
+<ol>
+<li> <strong>Install ruby1.8.6</strong></li>
+</ol>
+
+
+<p>Get the code with from <a href="ftp://ftp.ruby-lang.org/pub/ruby/ruby-1.8.6-p287.tar.gz.%C2%A0">ftp://ftp.ruby-lang.org/pub/ruby/ruby-1.8.6-p287.tar.gz.%C2%A0</a> Unzip and cd into the directory.  Run</p>
+
+<pre><code>./configure --prefix=/usr/local/stow/ruby-1.8.6-p287
+</code></pre>
+
+<p>and then</p>
+
+<pre><code>make &amp;&amp; make install
+</code></pre>
+
+<p>You shouldn&rsquo;t need to sudo if you have the permissions correct.  Run</p>
+
+<pre><code>make install-doc
+</code></pre>
+
+<p>if you want ri and rdoc, but it takes a while.</p>
+
+<ol>
+<li> <strong>Install ruby1.8.7</strong></li>
+</ol>
+
+
+<p>Much like the 1.8.6 version, get the code with <a href="ftp://ftp.ruby-lang.org/pub/ruby/ruby-1.8.7-p72.tar.gz">ftp://ftp.ruby-lang.org/pub/ruby/ruby-1.8.7-p72.tar.gz</a> Unzip and cd into the directory.  Run</p>
+
+<pre><code>./configure --prefix=/usr/local/stow/ruby-1.8.7-p72
+</code></pre>
+
+<p>and then</p>
+
+<pre><code>make &amp;&amp; make install
+</code></pre>
+
+<p>Again run</p>
+
+<pre><code>make install-doc
+</code></pre>
+
+<p>if you want.</p>
+
+<ol>
+<li> <strong>Update your path</strong></li>
+</ol>
+
+
+<p>Make sure that /usr/local/bin is on your path.  Since we don&rsquo;t have ruby installed anywhere else, you can put it at the end.  You could put it earlier if you have other versions installed.</p>
+
+<pre><code>echo $PATH
+</code></pre>
+
+<p>to see if you already have it.  If not, go to your .bashrc and add it where ever PATH is exported.</p>
+
+<ol>
+<li> <strong>Run stow</strong></li>
+</ol>
+
+
+<p>Lets set up ruby 1.8.7.  Change to the /usr/local/stow directory and run</p>
+
+<pre><code>sudo stow ruby-1.8.7-p72
+</code></pre>
+
+<p>All the symlinks are created for you.</p>
+
+<ol>
+<li> <strong>Install rubygems, gems and then stow again</strong></li>
+</ol>
+
+
+<p>Running</p>
+
+<pre><code>ruby -v
+</code></pre>
+
+<p>should show you it is version 1.8.7.  You will need to install rubygems now. Get it from <a href="http://rubyforge.org/frs/download.php/38646/rubygems-1.2.0.tgz">http://rubyforge.org/frs/download.php/38646/rubygems-1.2.0.tgz</a> and then extract it into a directory. Change into that directory and run</p>
+
+<pre><code>ruby setup.rb
+</code></pre>
+
+<p>Now rubygems is installed in the ruby directory, but you will need run stow again.  Change to /usr/local/stow and run</p>
+
+<pre><code>sudo stow ruby-1.8.7-p87
+</code></pre>
+
+<p>Running the command</p>
+
+<pre><code>which gem
+</code></pre>
+
+<p>should show you have it installed.  You can now install gems like mongrel, rails etc.  When you finish installing gems, be sure to run stow again so it will symlink the executables.</p>
+
+<p>That&rsquo;s it. Switching to ruby 1.8.6 is easy.  Go to /usr/local/stow and run</p>
+
+<pre><code>stow -D ruby-1.8.7-p22 &amp;&amp; stow -R ruby-1.8.6-p287
+</code></pre>
+
+<p>The -D removes all the symlinks.  Run the following to see all the options for stow</p>
+
+<pre><code>stow -h
+</code></pre>
+
+<p>Follow the instructions above to setup rubygems and all the gems again.  Remember to rerun stow so the executable are symlinked.  After you install the gems the first time, switching is simply a matter of stow -D and then stow -R.  Pretty clean and easy.</p>
+
+<p>A great thing about stow is I can use it for other packages as well, like mysql or php.  I&rsquo;ll note that ruby doesn&rsquo;t have a</p>
+
+<pre><code>make uninstall
+</code></pre>
+
+<p>so it is ugly if you want to remove the packages.  With stow, all you have to do is remove the directory.</p>
+
+<p>Notes:
+I tried to cover most commands I used.  If you need more unix reference, try something like   <a href="http://www.ee.surrey.ac.uk/Teaching/Unix/index.html">this</a> or <a href="http://freeengineer.org/learnUNIXin10minutes.html">this</a>.  Google is your friend.</p>
+
+<p>In addition to the articles linked above, I also read the following when writing this post <a href="http://blog.danieroux.com/2005/08/07/using-gnu-stow-to-manage-source-installs/">one</a> and <a href="http://www.linux.com/feature/127393">two</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Merb Notes]]></title>
+    <link href="http://mjwall.com/blog/2008/04/02/merb-notes/"/>
+    <updated>2008-04-02T13:55:00-04:00</updated>
+    <id>http://mjwall.com/blog/2008/04/02/merb-notes</id>
+    <content type="html"><![CDATA[<p>Since my last post, I have been looking more and more at Merb.  Just some random notes</p>
+
+<ul>
+<li><p>Looks like Merb 0.9.2 got some fcgi <a href="http://github.com/wycats/merb-more/commit/b5467e5138b8c18c0c521a5fce5ea529f1a090d6">love</a>. That is what I want to try to replace rails on my shared host.</p></li>
+<li><p>Get on IRC if you need help – irc.freenode.net#merb.  Really, IRC.</p></li>
+<li><p>If you can’t stay on IRC, go to <a href="http://groups.google.com/group/merb">http://groups.google.com/group/merb</a> for a log</p></li>
+<li><p>Use these <a href="http://www.gweezlebur.com/2008/3/1/quickie-sake-tasks-for-merb-hackers">sake</a> tasks if you are running the latest.  <code>sudo sake merb:update merb:install</code> will update core, more and plugins</p></li>
+<li><p>merb-rspec is no longer in plugins, but included in core</p></li>
+<li><p>Watch this from <a href="http://mtnwestrubyconf2008.confreaks.com/02zygmuntowicz.html">Confreaks</a>.  Worth the investment.</p></li>
+<li><p>Most tutorials and articles are dated.  <a href="http://crazycool.co.uk/blog/2008/3/17/Adventures+in+Merb/">This</a> one helped though.</p></li>
+</ul>
+
+
+<p>Looking forward to more from merb….</p>
+
+<p>UPDATE:  Having some trouble with typo’s caching.  Going to repost this article.</p>
+]]></content>
+  </entry>
+  
+</feed>

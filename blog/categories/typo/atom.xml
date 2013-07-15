@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: typo | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/typo/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Moving to Wordpress]]></title>
+    <link href="http://mjwall.com/blog/2008/07/30/moving-to-wordpress/"/>
+    <updated>2008-07-30T21:20:41-04:00</updated>
+    <id>http://mjwall.com/blog/2008/07/30/moving-to-wordpress</id>
+    <content type="html"><![CDATA[<p>Alright, I give.  Rails on shared hosting really sucks.  I&rsquo;ve seen reports of success with <a href="http://modrails.com/">Phusion Passenger</a>, but my <a href="http://refer.asmallorange.com/10815">host</a> doesn&rsquo;t support it yet.  I wrote about my some of this <a href="/?p=13">issues</a> I have had.  So welcome to wordpress.  Same theme, mostly, with less crashes.  Maybe this will encourage me to write more.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Typo doesn't have stats]]></title>
+    <link href="http://mjwall.com/blog/2008/01/01/typo-doesnt-have-stats/"/>
+    <updated>2008-01-01T12:14:00-05:00</updated>
+    <id>http://mjwall.com/blog/2008/01/01/typo-doesnt-have-stats</id>
+    <content type="html"><![CDATA[<p>Now that I have used <a href="http://www.typosphere.org">typo</a> for a couple of days now, I realized it is missing page stats.  Maybe it is vanity, but if I am going to spend time posting information, I want to know when someone is looking at it.  So I looked on the mailing list and didn’t see anything current that would help.  My first thought, right on, now I have a chance to write my first open source plugin.  Then I came to my senses and decided to google around.</p>
+
+<p>I found a post on <a href="http://www.juixe.com/techknow/index.php/2007/02/04/rails-google-analytics-plugin/">Juixe TechKnow</a> about a plugin from <a href="http://woss.name/2006/05/09/google-analytics-plugin/">Graeme</a>.  Looked pretty good and I have been wanting to try google analytics.  I also found this <a href="http://www.artweb-design.de/projects/ruby-on-rails-plugin-google-analytics">plugin</a> which appears to be an updated version of Graeme’s.  I tried the blue egg edition, but was getting errors about a missing Liquid constant.  Didn’t feel like adding <a href="http://code.google.com/p/liquid-markup/">liquid</a> so I went back to the first plugin.</p>
+
+<p>Install and configuration was simple.  Signed up for <a href="https://www.google.com/analytics/home/">google analytics</a>, installed the plugin, modified my environment.rb.  Now I am collecting stats.</p>
+
+<p>I did run see this <a href="http://article.gmane.org/gmane.comp.web.typo.user/605/match=stats">discussion</a> on the mailing list about gathering stats from feeds.  I have already signed up for <a href="http://www.feedburner.com/fb/a/home">feedburner</a> and replaced the syndication sidebar with a static one.</p>
+
+<p>Should I be concerned?  Everything has been too straightforward.</p>
+
+<p>The only issue I see is that the plugin uses the older version of google analytics tracking, urchin.js.  Last month, google launched a new script, ga.js.  See <a href="http://www.google.com/support/googleanalytics/bin/answer.py?hl=en&amp;answer=69588">here</a> for more info.  Maybe I’ll update the plugin.  I also want to check to see if typo is caching the javascript file or downloading it every time.</p>
+
+<p>BTW, Happy New Year.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New site]]></title>
+    <link href="http://mjwall.com/blog/2007/12/30/new-site/"/>
+    <updated>2007-12-30T21:39:00-05:00</updated>
+    <id>http://mjwall.com/blog/2007/12/30/new-site</id>
+    <content type="html"><![CDATA[<p>Well, nothing like waiting until the last minute.  My personal weblog has been down for over a year.  One of my 2007 new year resolutions was get it back up.  Here goes.</p>
+
+<p>Over the past year or so, I have been doing mostly Ruby on Rails work, both personally and professionally.  I had to find another job about 3 months ago, and I was dreading having to go back to Java.  RoR is just so much fun.  I wanted to set my new weblog with RoR and looked at both <a href="http://www.typosphere.org/">Typo</a> and <a href="http://mephistoblog.com/">Mephisto</a> as well as few others.  Why did I choose Typo?  I think it was after listening to <a href="http://podcast.rubyonrails.org/programs/1/episodes/stuart-halloway">Stuart Halloway’s podcast</a>.  So far so good.  I have to say, I am surprised by how easy it was to get set up and going.  Much different than my experience with drupal 6 years ago.  Surely I know more now, but I am still surprised.  I’ll post more info about the set in the <a href="http://www.mjwall.com/pages/about">about</a> page</p>
+
+<p>I plan to blog mostly about technology, things I find interesting and things I learn.  Maybe someone will find it useful.</p>
+
+<p>Thanks for stopping by.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: intellij | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/intellij/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Groovy plugin patch for running Grails 1.1 Beta2 on Intellij 8.0.1]]></title>
+    <link href="http://mjwall.com/blog/2009/01/01/groovy-plugin-patch-for-running-grails-11-beta2-on-intellij-801/"/>
+    <updated>2009-01-01T16:51:37-05:00</updated>
+    <id>http://mjwall.com/blog/2009/01/01/groovy-plugin-patch-for-running-grails-11-beta2-on-intellij-801</id>
+    <content type="html"><![CDATA[<p>My last <a href="http://www.mjwall.com/2008/12/intellij-801-issues-with-grails-11-beta2/">attempt</a> at running Grails 1.1 beta2 on IntelliJ 8.0.1 didn&rsquo;t work out so well.  I ran the EAP version for a while, but had some issues building grails itself, specifically trying to run unit tests.</p>
+
+<p>So, I did some digging through the <a href="http://www.jetbrains.net/jira/browse/GRVY">bug tracker</a> and <a href="http://svn.jetbrains.org/idea/Trunk/bundled/groovy/">subversion</a> for the <a href="http://plugins.intellij.net/plugin/?id=1524">plugin</a>.  I also spent some time learning about IntelliJ <a href="http://www.jetbrains.com/idea/documentation/howto_03.html?Where%20to%20Begin?">plugins</a> and reading newsgroups about what others <a href="http://www.jetbrains.net/devnet/thread/279026#279026">have</a> <a href="http://www.nabble.com/Intellij-IDEA-Jetgroovy-and-Grails-1.1-Beta-1-td20817716.html">tried</a>.  The result is a patched version of the plugin that seems to be working.  Here is the <a href="http://www.mjwall.com/files/jetgroovy-21543plus21697.zip">file</a> if you want to try it.  Unzip and replace the contents in your INTELLIJ_HOME/plugins/Groovy directory.  Again, use at your own risk and backup your existing plugins/Groovy directory.</p>
+
+<p>If you are interested, here are the details.</p>
+
+<ul>
+<li><p>Running on a Mac with java 1.5</p></li>
+<li><p>Check out code from <a href="http://svn.jetbrains.org/idea/Trunk/bundled/groovy">http://svn.jetbrains.org/idea/Trunk/bundled/groovy</a></p></li>
+<li><p>Revert back to revision 21543.  21544 breaks something.  Revision 21538 fixed the initial issue I saw, where the grails-1.1-beta2 library was not recognized, as reported in <a href="http://www.jetbrains.net/jira/browse/GRVY-1933">GRVY-1933</a>.</p></li>
+<li><p>Add in revision 21697, which fixes <a href="http://www.jetbrains.net/jira/browse/GRVY-1943">GRVY-1943</a> so the app can run.</p></li>
+<li><p>Setup IntelliJ 8.0.1 build 9164 with the <a href="http://www.jetbrains.com/idea/download/index.html#kit">dev</a> package</p></li>
+<li><p>Configure IntelliJ to build the plugin.  <a href="http://www.jetbrains.net/confluence/display/GRVY/How+to+build+plugin">These</a> instructions helped.  Groovy module configured to use Groovy-1.6_RC1.  RT module configured to use groovy-1.5.7, cause 1.6 didn&rsquo;t work.</p></li>
+<li><p>Build grammer with ant task, run Make and then run &lsquo;Prepare All Plugin Modules for Deployment&rsquo;.</p></li>
+<li><p>Shutdown IntelliJ.</p></li>
+<li><p>Remove INTELLIJ_HOME/plugins/Groovy directory.  Unzip groovy.zip in INTELLIJ_HOME/plugins directory</p></li>
+</ul>
+
+
+<p>  *</p>
+
+<ul>
+<li>Restart IntelliJ</li>
+</ul>
+
+
+<p>Hope it works for you and Happy New Year.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Intellij 8.0.1 issues with Grails 1.1 beta2 ]]></title>
+    <link href="http://mjwall.com/blog/2008/12/29/intellij-801-issues-with-grails-11-beta2/"/>
+    <updated>2008-12-29T22:20:11-05:00</updated>
+    <id>http://mjwall.com/blog/2008/12/29/intellij-801-issues-with-grails-11-beta2</id>
+    <content type="html"><![CDATA[<p>Grails-1.1-beta2 does not work correctly with the jetgroovy plugin in intellij.  I am able to add a global library for Grails 1.1 beta2, but it not saved in the project facet.  The most apparent problem for me is that the &lsquo;Run grails target&rsquo; shortcut is not available.  See <a href="http://www.jetbrains.net/devnet/thread/278936?tstart=0">this</a> thread and this <a href="http://www.jetbrains.net/jira/browse/GRVY-1933?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel">bug</a> for more details.  According to the details, it is fixed.  However, I don&rsquo;t see an update to the jetgroovy plugin.  I am running version 8.0.1 of Intellij on Mac OSX.</p>
+
+<p>So I tried the <a href="http://www.jetbrains.net/confluence/display/IDEADEV/Diana+EAP">EAP</a> 9572 version to see if it included the fix that was reported in Jira.  The bundled jetgroovy plugin appears to have the update.  Yippee.  Glad I didn&rsquo;t have to build it myself according to the <a href="http://www.jetbrains.net/confluence/display/GRVY/How+to+build+plugin">wiki</a>,</p>
+
+<p>Here is the interesting part that you may care about.  I zipped up the plugins/Groovy folder and replaced the old version in Intellij 8.0.1.  It seems to have fixed it for the stable version as well.  <a href="http://www.mjwall.com/files/jetgroovy.zip">Here</a> is the file until JetBrains has something better.  Use at your own risk, perhaps making a backup of the old plugins/Groovy folder.</p>
+
+<p><strong>UPDATE</strong> It appears there are issues with copying the plugin back to the 8.0.1 release.  Loading the file inside grails-app just hangs.  However, the EAP version is working just fine so far.  Let me know if you have success getting it work in the stable version.</p>
+
+<p><strong>UPDATE 2</strong> See <a href="http://www.mjwall.com/2009/01/groovy-plugin-patch-for-running-grails-11-beta2-on-intellij-801/">this</a> for a patched version that works better.</p>
+]]></content>
+  </entry>
+  
+</feed>

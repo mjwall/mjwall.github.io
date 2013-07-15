@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vim | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/vim/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vim and Rails]]></title>
+    <link href="http://mjwall.com/blog/2008/01/17/vim-and-rails/"/>
+    <updated>2008-01-17T11:24:00-05:00</updated>
+    <id>http://mjwall.com/blog/2008/01/17/vim-and-rails</id>
+    <content type="html"><![CDATA[<p>I do almost all my development using <a href="http://www.vim.org/">vim/gvim</a>.  Vim is great.  Yes, I have tried IDEs, and will use Eclipse when doing some java work.  Ever since I started developing in Rails though, it has been me and vim.</p>
+
+<p>I see lots of posts with rails code.  Many of them are from Textmate, a Mac text editor, and the <a href="http://alternateidea.com/blog/articles/2006/1/3/textmate-vibrant-ink-theme-and-prototype-bundle">VibrantInk</a> color scheme looks great.  I already use <a href="http://rails.vim.tpope.net/">rails.vim</a> which is a great plugin by Tim Pope for rails development.  He has also released a color scheme based on VibrantInk called <a href="http://www.vim.org/scripts/script.php?script_id=1891">vividchalk</a>.  There is another VibrantInk port for vim oddly enough called <a href="http://blog.jozilla.net/2006/10/05/vibrantink-theme-for-vim/">vibrantink.vim</a>.  Both are really good, but I use the vibrantink.vim color scheme getter for couple of reasons.  One, it looks better in console vim.  Two, the italics in vividchalk through me off.</p>
+
+<p>Here is a screenshot from <a href="http://www.flickr.com/photos/37743236@N00/952130787/">flicker</a> with a comparison of the 3 made by Jo Vermeulen, the guy who made vibrantink.vim</p>
+]]></content>
+  </entry>
+  
+</feed>

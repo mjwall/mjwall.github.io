@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Switching to Octopress]]></title>
+    <link href="http://mjwall.com/blog/2013/07/13/switching-to-octopress/"/>
+    <updated>2013-07-13T22:54:00-04:00</updated>
+    <id>http://mjwall.com/blog/2013/07/13/switching-to-octopress</id>
+    <content type="html"><![CDATA[<p>Switching to Octopress, see <a href="http://octopress.org/">http://octopress.org/</a>.  I haven&rsquo;t blogged
+in a long time, but I wanted to start again.  Got some emacs stuff I&rsquo;d
+like to get out.  Anyway, here are some notes on my conversion.</p>
+
+<ul>
+<li><p>Theme is Greyshade, see <a href="https://github.com/shashankmehta/greyshade">https://github.com/shashankmehta/greyshade</a>.
+My color is #0020C2, see
+<a href="https://github.com/shashankmehta/greyshade/wiki/Sites-using-Greyshade">https://github.com/shashankmehta/greyshade/wiki/Sites-using-Greyshade</a>.
+I really like the mobile format baked into the theme.</p></li>
+<li><p>Exported old wordpress content with
+<a href="https://github.com/thomasf/exitwp">https://github.com/thomasf/exitwp</a>.  Worked great, after I cleaned up
+the xmllint errors.  Looks like there was a few formatting issues,
+but I don&rsquo;t care enough to fix them.</p></li>
+<li><p>Found alias generator plugin for Jekyll at
+<a href="https://github.com/tsmango/jekyll_alias_generator.">https://github.com/tsmango/jekyll_alias_generator.</a>  Just copied the
+alias_generator.rb into the plugins directory and added something
+like the following to the yaml section of every old post.  Allows
+the old links to still work, in case anyone had linked to me.</p>
+
+<p><code>alias: /original/link/from/wp/blog</code></p></li>
+<li><p>Thought about migrating all the old comments over and using
+something like <a href="http://disqus.com/">http://disqus.com/</a>.  In the end, I decided not
+to enable comments at all.  Hit me up on twitter or google+ if you
+really have something to say.</p></li>
+</ul>
+
+
+<p>So far, this has been really easy.  I like it a lot.  Nice to be using
+ruby again.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ubuntu | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/ubuntu/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New laptop]]></title>
+    <link href="http://mjwall.com/blog/2008/03/05/new-laptop/"/>
+    <updated>2008-03-05T21:19:00-05:00</updated>
+    <id>http://mjwall.com/blog/2008/03/05/new-laptop</id>
+    <content type="html"><![CDATA[<p>One more quick post.  Last week I purchased an inexpensive (shall I say cheap) laptop from WalMart.  It is a <a href="http://www.toshibadirect.com/td/b2c/rdet.jsp?poid=404159&amp;seg=HHO">Toshiba A215-S5808</a>.  I booted once in Vista to burn a cd and them immediately installed <a href="http://www.ubuntu.com/">Ubuntu 7.10</a>.  Almost all my hardware was recognized, except the wireless and sound.  This <a href="http://www.datanorth.net/~cuervo/blog/linux-on-the-satellite-a215-s7407/">post</a> was very helpful in resolving those issues.  It’s only been a week, but I keep asking myself, “Why did I code so long in Windows”.</p>
+]]></content>
+  </entry>
+  
+</feed>

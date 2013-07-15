@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://mjwall.github.io/sitemap.xml 
+Sitemap: http://mjwall.com/sitemap.xml 

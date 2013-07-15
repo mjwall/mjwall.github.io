@@ -2,23 +2,660 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[mjwall.com]]></title>
-  <link href="http://mjwall.github.io/atom.xml" rel="self"/>
-  <link href="http://mjwall.github.io/"/>
-  <updated>2013-07-13T22:58:56-04:00</updated>
-  <id>http://mjwall.github.io/</id>
+  <link href="http://mjwall.com/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
   <author>
     <name><![CDATA[Michael Wall]]></name>
-    <email><![CDATA[mjwall@gmail.com]]></email>
+    
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
     <title type="html"><![CDATA[Switching to Octopress]]></title>
-    <link href="http://mjwall.github.io/blog/2013/07/13/switching-to-octopress/"/>
+    <link href="http://mjwall.com/blog/2013/07/13/switching-to-octopress/"/>
     <updated>2013-07-13T22:54:00-04:00</updated>
-    <id>http://mjwall.github.io/blog/2013/07/13/switching-to-octopress</id>
-    <content type="html"><![CDATA[<p>First post.  Looking to switch to Octopress, see link the footer.</p>
+    <id>http://mjwall.com/blog/2013/07/13/switching-to-octopress</id>
+    <content type="html"><![CDATA[<p>Switching to Octopress, see <a href="http://octopress.org/">http://octopress.org/</a>.  I haven&rsquo;t blogged
+in a long time, but I wanted to start again.  Got some emacs stuff I&rsquo;d
+like to get out.  Anyway, here are some notes on my conversion.</p>
+
+<ul>
+<li><p>Theme is Greyshade, see <a href="https://github.com/shashankmehta/greyshade">https://github.com/shashankmehta/greyshade</a>.
+My color is #0020C2, see
+<a href="https://github.com/shashankmehta/greyshade/wiki/Sites-using-Greyshade">https://github.com/shashankmehta/greyshade/wiki/Sites-using-Greyshade</a>.
+I really like the mobile format baked into the theme.</p></li>
+<li><p>Exported old wordpress content with
+<a href="https://github.com/thomasf/exitwp">https://github.com/thomasf/exitwp</a>.  Worked great, after I cleaned up
+the xmllint errors.  Looks like there was a few formatting issues,
+but I don&rsquo;t care enough to fix them.</p></li>
+<li><p>Found alias generator plugin for Jekyll at
+<a href="https://github.com/tsmango/jekyll_alias_generator.">https://github.com/tsmango/jekyll_alias_generator.</a>  Just copied the
+alias_generator.rb into the plugins directory and added something
+like the following to the yaml section of every old post.  Allows
+the old links to still work, in case anyone had linked to me.</p>
+
+<p><code>alias: /original/link/from/wp/blog</code></p></li>
+<li><p>Thought about migrating all the old comments over and using
+something like <a href="http://disqus.com/">http://disqus.com/</a>.  In the end, I decided not
+to enable comments at all.  Hit me up on twitter or google+ if you
+really have something to say.</p></li>
+</ul>
+
+
+<p>So far, this has been really easy.  I like it a lot.  Nice to be using
+ruby again.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Accessing CLI args and java system properties from a Grails script]]></title>
+    <link href="http://mjwall.com/blog/2009/10/23/accessing-cli-args-and-java-system-properties-from-a-grails-script/"/>
+    <updated>2009-10-23T15:25:38-04:00</updated>
+    <id>http://mjwall.com/blog/2009/10/23/accessing-cli-args-and-java-system-properties-from-a-grails-script</id>
+    <content type="html"><![CDATA[<p>Quick post so I can remember how to access CLI args and Java system properties inside of a grails script.</p>
+
+<p>Put this following code inside of your_grails_app/scripts/ScriptTest.groovy</p>
+
+<pre><code>target ( default : 'Print args and java system properties' ) {
+    //grails script-test arg1 arg2
+    println "Grails CLI args"
+    println Ant.project.properties."grails.cli.args"
+
+    //grails -Dprop1anything script-test
+    println "Java system properties of prop1"
+    println Ant.project.properties.prop1
+}
+</code></pre>
+
+<p>So now you can run the following
+`
+$grails -Dprop1=anything script-test arg1 arg2
+Welcome to Grails 1.1.1 &ndash; <a href="http://grails.org/">http://grails.org/</a>
+Licensed under Apache Standard License 2.0
+Grails home is set to: /Library/Grails/Home</p>
+
+<p>Base Directory: /Users/mjwall/src/sample1
+Running script /Users/mjwall/src/sample1/ScriptTest.groovy
+Grails CLI args
+arg1
+arg2
+Java system properties of prop1
+anything
+`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Grails and Maven with no Maven]]></title>
+    <link href="http://mjwall.com/blog/2009/01/10/grails-and-maven-with-no-maven/"/>
+    <updated>2009-01-10T21:27:07-05:00</updated>
+    <id>http://mjwall.com/blog/2009/01/10/grails-and-maven-with-no-maven</id>
+    <content type="html"><![CDATA[<p>According the <a href="http://www.grails.org/1.1-beta2+Release+Notes">Grails 1.1 Beta2 Release Notes</a>, Grails 1.1 will have better Maven integration.  I think that is great news allowing more integration between different java projects.  It means this post may not relevant for very long though.</p>
+
+<p>For all it&rsquo;s complexity, I like maven.  Sometimes it makes complex tasks easier, but not always.  Here is my situation.  There are several java projects already using maven.  I am building a grails project that will be used by some of these projects.  The easiest integration is to package up a war file and deploy it to our local maven repository.  <a href="http://nexus.sonatype.org/">Nexus</a> is great by the way.  The other projects can include my grails project as a dependency.  So what is the best way to do that?  Right, I hear you.  By hand.  However, I need to automate this.</p>
+
+<p>I looked at the <a href="http://forge.octo.com/maven/sites/mtg/grails-maven-plugin/">grails-maven-plugin</a>, but it is too much.  I am not trying to mavenize my project, just deploy it to Nexus.</p>
+
+<p>Luckily, there is as a cleaner answer.   Creating scripts in grails is <a href="http://docs.codehaus.org/display/GRAILS/Command+Line+Scripting">easy</a>.  Those scripts can use the <a href="http://maven.apache.org/ant-tasks/index.html">maven-ant-tasks</a>.  Download the <a href="http://www.apache.org/dyn/closer.cgi/maven/binaries/maven-ant-tasks-2.0.9.jar">jar</a> file and put it in your lib directory.</p>
+
+<p>I&rsquo;ll create 2 tasks, one handle the &lsquo;maven install&rsquo; so I can test locally and one to handle &lsquo;maven deploy&rsquo;.  We need a pom file, but instead of checking one in, let&rsquo;s generate it from the project so it picks up the latest version etc.  (Note, I studied the <a href="http://github.com/russel/gant/tree/master/build.gant">gant</a> build file pretty closely).  Here is an example of MavenInstall.groovy file from the scripts directory</p>
+
+<p>1 includeTargets &lt;&lt; grailsScript ( &#8221;War&#8221; )
+2
+3 final antlibXMLns = &lsquo;antlib:org.apache.maven.artifact.ant&rsquo;
+4 final tempPomFile = &ldquo;pom.xml&rdquo;
+5
+6 target (preparePom : &ldquo;Generate a temporary pom file&rdquo;) {
+7  depends(packageApp)  <em>//so config.maven properties are loaded</em>
+8  def writer = new StringWriter()
+9  def builder = new groovy.xml.MarkupBuilder(writer)
+10  builder.project(xmlns:&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a>&rdquo;,
+11  &lsquo;xmlns:xsi&rsquo;:&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a>&rdquo;,
+12  &lsquo;xsi:schemaLocation&rsquo;:&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a> <a href="http://maven.apache.org/maven-v4_0_0.xsd">http://maven.apache.org/maven-v4_0_0.xsd</a>&rdquo;) {
+13  &lsquo;modelVersion&rsquo; &lsquo;4.0.0&rsquo;
+14  &lsquo;groupId&rsquo; &lsquo;com.mjwall&rsquo;
+15  &lsquo;artifactId&rsquo; grailsAppName
+16  &lsquo;packaging&rsquo; &lsquo;war&rsquo;
+17  &lsquo;version&rsquo; grailsAppVersion
+18  }
+19
+20  File temp = new File(tempPomFile)
+21  temp.write writer.toString()
+22  def pom =ant.&ldquo;${antlibXMLns}:pom&rdquo; ( file : tempPomFile , id : tempPomFile )
+23  echo(&ldquo;Temporary pom file written to ${tempPomFile}, don&rsquo;t forget to clean up&rdquo;)
+24  return tempPomFile
+25 }
+26
+27 target (deletePom : &ldquo;Clean up the temporary pom file&rdquo;) {
+28  new File(tempPomFile).delete()
+29 }
+30
+31 target (getWarName : &ldquo;Return the war name defined by the app configs&rdquo;) {
+32  depends(war)
+33  <em>// bug in grails clean, doesn&rsquo;t seem to delete war from a custom location defined by grails.war.destFile</em>
+34  return warName
+35 }
+36
+37 target (default : &ldquo;Install to local maven repository&rdquo;) {
+38  depends(war)
+39  def tempPom = preparePom()
+40  ant.&ldquo;${antlibXMLns}:install&rdquo; ( file : getWarName() ) { pom ( refid : tempPom ) }
+41  deletePom()
+42 }
+43</p>
+
+<p>Not too scary, but what is going on here?  The default task you will see depends on the war file being built.  A temporary pom is created using the value defined in application.properties.  Then the maven-ant-task for install is run and the pom is deleted.  Pretty simple huh?  It is once you see an example anyway.</p>
+
+<p>How about a maven deploy.  Basically the same thing, except the pom needs to generate a distributionManagement section.  I set up a couple of properties in my Config.groovy at the end called maven.remoteReleaseUrl and maven.remoteSnapshotUrl.  Change the pom generate to include them.  Looks like this</p>
+
+<p>6 target (preparePom : &ldquo;Generate a temporary pom file&rdquo;) {
+7  depends(packageApp)  <em>//so config.maven properties are loaded</em>
+8  def writer = new StringWriter()
+9  def builder = new groovy.xml.MarkupBuilder(writer)
+10  builder.project(xmlns:&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a>&rdquo;,
+11  &lsquo;xmlns:xsi&rsquo;:&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a>&rdquo;,
+12  &lsquo;xsi:schemaLocation&rsquo;:&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a> <a href="http://maven.apache.org/maven-v4_0_0.xsd">http://maven.apache.org/maven-v4_0_0.xsd</a>&rdquo;) {
+13  &lsquo;modelVersion&rsquo; &lsquo;4.0.0&rsquo;
+14  &lsquo;groupId&rsquo; &lsquo;com.mjwall&rsquo;
+15  &lsquo;artifactId&rsquo; grailsAppName
+16  &lsquo;packaging&rsquo; &lsquo;war&rsquo;
+17  &lsquo;version&rsquo; grailsAppVersion
+20  &lsquo;distributionManagement&rsquo; {
+21  &lsquo;repository&rsquo; {
+22  &lsquo;id&rsquo; &lsquo;releases&rsquo;
+23  &lsquo;name&rsquo; &lsquo;Internal Releases&rsquo;
+24  &lsquo;url&rsquo; config.maven.remoteReleaseUrl <em>//defined in Config.groovy</em>
+25  }
+26  &lsquo;snapshotRepository&rsquo; {
+27  &lsquo;id&rsquo; &lsquo;snapshots&rsquo;
+28  &lsquo;name&rsquo; &lsquo;Internal Snapshots&rsquo;
+29  &lsquo;url&rsquo; config.maven.remoteSnapshotUrl <em>//defined in Config.groovy</em>
+30  &lsquo;uniqueVersion&rsquo; &lsquo;true&rsquo;
+31  }
+18  }
+19
+20  File temp = new File(tempPomFile)
+21  temp.write writer.toString()
+22  def pom =ant.&ldquo;${antlibXMLns}:pom&rdquo; ( file : tempPomFile , id : tempPomFile )
+23  echo(&ldquo;Temporary pom file written to ${tempPomFile}, don&rsquo;t forget to clean up&rdquo;)
+24  return tempPomFile
+25 }</p>
+
+<p>Then instead of calling ant.&ldquo;${antlibXMLns}:install&rdquo;, call ant.&ldquo;${antlibXMLns}:deploy&rdquo;</p>
+
+<p>Couple of notes.  I did run into problems with my settings.xml file defined in ~/.m2, so I ended up creating one much like I did with the pom.xml.  Only used when deploying, so it is not built for the install.  Finally, because grails can only run one task per script, I DRYed up this whole thing with one file called MavenUtils that included all code for both install and deploy.  Then, my MavenInstall file just loads the MavenUtils and calls install.</p>
+
+<p>Wow, more explanation than I thought it would.  And I guess the title is not entirely accurate.  I am using maven, but not by calling the maven executable directly.  Hopefully the new Maven/Grails integration will make this easier.  Fingers crossed.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Groovy plugin patch for running Grails 1.1 Beta2 on Intellij 8.0.1]]></title>
+    <link href="http://mjwall.com/blog/2009/01/01/groovy-plugin-patch-for-running-grails-11-beta2-on-intellij-801/"/>
+    <updated>2009-01-01T16:51:37-05:00</updated>
+    <id>http://mjwall.com/blog/2009/01/01/groovy-plugin-patch-for-running-grails-11-beta2-on-intellij-801</id>
+    <content type="html"><![CDATA[<p>My last <a href="http://www.mjwall.com/2008/12/intellij-801-issues-with-grails-11-beta2/">attempt</a> at running Grails 1.1 beta2 on IntelliJ 8.0.1 didn&rsquo;t work out so well.  I ran the EAP version for a while, but had some issues building grails itself, specifically trying to run unit tests.</p>
+
+<p>So, I did some digging through the <a href="http://www.jetbrains.net/jira/browse/GRVY">bug tracker</a> and <a href="http://svn.jetbrains.org/idea/Trunk/bundled/groovy/">subversion</a> for the <a href="http://plugins.intellij.net/plugin/?id=1524">plugin</a>.  I also spent some time learning about IntelliJ <a href="http://www.jetbrains.com/idea/documentation/howto_03.html?Where%20to%20Begin?">plugins</a> and reading newsgroups about what others <a href="http://www.jetbrains.net/devnet/thread/279026#279026">have</a> <a href="http://www.nabble.com/Intellij-IDEA-Jetgroovy-and-Grails-1.1-Beta-1-td20817716.html">tried</a>.  The result is a patched version of the plugin that seems to be working.  Here is the <a href="http://www.mjwall.com/files/jetgroovy-21543plus21697.zip">file</a> if you want to try it.  Unzip and replace the contents in your INTELLIJ_HOME/plugins/Groovy directory.  Again, use at your own risk and backup your existing plugins/Groovy directory.</p>
+
+<p>If you are interested, here are the details.</p>
+
+<ul>
+<li><p>Running on a Mac with java 1.5</p></li>
+<li><p>Check out code from <a href="http://svn.jetbrains.org/idea/Trunk/bundled/groovy">http://svn.jetbrains.org/idea/Trunk/bundled/groovy</a></p></li>
+<li><p>Revert back to revision 21543.  21544 breaks something.  Revision 21538 fixed the initial issue I saw, where the grails-1.1-beta2 library was not recognized, as reported in <a href="http://www.jetbrains.net/jira/browse/GRVY-1933">GRVY-1933</a>.</p></li>
+<li><p>Add in revision 21697, which fixes <a href="http://www.jetbrains.net/jira/browse/GRVY-1943">GRVY-1943</a> so the app can run.</p></li>
+<li><p>Setup IntelliJ 8.0.1 build 9164 with the <a href="http://www.jetbrains.com/idea/download/index.html#kit">dev</a> package</p></li>
+<li><p>Configure IntelliJ to build the plugin.  <a href="http://www.jetbrains.net/confluence/display/GRVY/How+to+build+plugin">These</a> instructions helped.  Groovy module configured to use Groovy-1.6_RC1.  RT module configured to use groovy-1.5.7, cause 1.6 didn&rsquo;t work.</p></li>
+<li><p>Build grammer with ant task, run Make and then run &lsquo;Prepare All Plugin Modules for Deployment&rsquo;.</p></li>
+<li><p>Shutdown IntelliJ.</p></li>
+<li><p>Remove INTELLIJ_HOME/plugins/Groovy directory.  Unzip groovy.zip in INTELLIJ_HOME/plugins directory</p></li>
+</ul>
+
+
+<p>  *</p>
+
+<ul>
+<li>Restart IntelliJ</li>
+</ul>
+
+
+<p>Hope it works for you and Happy New Year.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Intellij 8.0.1 issues with Grails 1.1 beta2 ]]></title>
+    <link href="http://mjwall.com/blog/2008/12/29/intellij-801-issues-with-grails-11-beta2/"/>
+    <updated>2008-12-29T22:20:11-05:00</updated>
+    <id>http://mjwall.com/blog/2008/12/29/intellij-801-issues-with-grails-11-beta2</id>
+    <content type="html"><![CDATA[<p>Grails-1.1-beta2 does not work correctly with the jetgroovy plugin in intellij.  I am able to add a global library for Grails 1.1 beta2, but it not saved in the project facet.  The most apparent problem for me is that the &lsquo;Run grails target&rsquo; shortcut is not available.  See <a href="http://www.jetbrains.net/devnet/thread/278936?tstart=0">this</a> thread and this <a href="http://www.jetbrains.net/jira/browse/GRVY-1933?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel">bug</a> for more details.  According to the details, it is fixed.  However, I don&rsquo;t see an update to the jetgroovy plugin.  I am running version 8.0.1 of Intellij on Mac OSX.</p>
+
+<p>So I tried the <a href="http://www.jetbrains.net/confluence/display/IDEADEV/Diana+EAP">EAP</a> 9572 version to see if it included the fix that was reported in Jira.  The bundled jetgroovy plugin appears to have the update.  Yippee.  Glad I didn&rsquo;t have to build it myself according to the <a href="http://www.jetbrains.net/confluence/display/GRVY/How+to+build+plugin">wiki</a>,</p>
+
+<p>Here is the interesting part that you may care about.  I zipped up the plugins/Groovy folder and replaced the old version in Intellij 8.0.1.  It seems to have fixed it for the stable version as well.  <a href="http://www.mjwall.com/files/jetgroovy.zip">Here</a> is the file until JetBrains has something better.  Use at your own risk, perhaps making a backup of the old plugins/Groovy folder.</p>
+
+<p><strong>UPDATE</strong> It appears there are issues with copying the plugin back to the 8.0.1 release.  Loading the file inside grails-app just hangs.  However, the EAP version is working just fine so far.  Let me know if you have success getting it work in the stable version.</p>
+
+<p><strong>UPDATE 2</strong> See <a href="http://www.mjwall.com/2009/01/groovy-plugin-patch-for-running-grails-11-beta2-on-intellij-801/">this</a> for a patched version that works better.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Back to Java]]></title>
+    <link href="http://mjwall.com/blog/2008/12/23/back-to-java/"/>
+    <updated>2008-12-23T09:23:43-05:00</updated>
+    <id>http://mjwall.com/blog/2008/12/23/back-to-java</id>
+    <content type="html"><![CDATA[<p>All good things must come to an end.  After doing Ruby development professionally for almost 2 years, I decided to change jobs and went back to my Java roots.</p>
+
+<p>So I would like to detail some of the things I have missed noticed in the couple of months I have been back.</p>
+
+<p><strong>Productivity</strong>, everything just seems to take longer with Java.  Maybe I am just rusty, or maybe is the a combination of some of the other things listed here</p>
+
+<p><strong>Convention</strong>, there are too many choices I have to make and too many things I have to decide that distract me from writing the code.  Before I went to Ruby, I was an ant guy.  Now I am using maven and I think I like it.  The out of the box convention just feels better.  Still not sure about the dependency management though</p>
+
+<p><strong>Not needing an IDE</strong>, Vim and I have been friends for a long time and our friendship grew during my time as a Ruby developer.  Now that I am back to Java, I keep getting pulled toward an IDE again.  I used eclipse in the past, but I thinking I will go with IntelliJ.</p>
+
+<p><strong>Libraries</strong>, I forgot how many libraries there are.  It is nice to have a choice, but it sure adds time.</p>
+
+<p><strong>BDD/TDD</strong>, takes a lot longer.  I keep preaching, but it takes so much more effort the by in is just not there.</p>
+
+<p><strong>IRB</strong>, wow do I miss you.</p>
+
+<p><strong>Class Design</strong> is certainly different(better?)  I think part if it come trying to make to make things more testable and part of it comes from more focus on the DRY principle.</p>
+
+<p>I&rsquo;ll post more comments as I go.  Be on the lookout for Grails posts, as I just started rewriting a rest service with it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cruisecontrolrb, git and rails 2.1]]></title>
+    <link href="http://mjwall.com/blog/2008/08/18/cruisecontrolrb-git-and-rails-21/"/>
+    <updated>2008-08-18T19:44:06-04:00</updated>
+    <id>http://mjwall.com/blog/2008/08/18/cruisecontrolrb-git-and-rails-21</id>
+    <content type="html"><![CDATA[<p>I really love cruisecontrol.rb in a team environment.  The ability to run tests against every commit is great, and it is such fun being the &ldquo;build police&rdquo;.</p>
+
+<blockquote><p>Excuse me sir, can I see your license to commit please?</p></blockquote>
+
+<p>We can have some fun with that one.</p>
+
+<blockquote><p>This license expired just before the dotcom bubble</p>
+
+<p>You have a languague restriction here that says you can commit only while wearing vb.net</p>
+
+<p>I need to see some proof of build collision insurance.</p></blockquote>
+
+<p>But I digress. Sorry, back to the program.</p>
+
+<p>As rails grows, I have some questions.</p>
+
+<ol>
+<li><p> Where the heck is code for cruise control?</p></li>
+<li><p> Can I use git?</p></li>
+<li><p> Will it run against rails 2.1 since I am security conscience and have updated after the recent <a href="http://www.ruby-lang.org/en/news/2008/06/20/arbitrary-code-execution-vulnerabilities/">warnings</a> and <a href="http://www.ruby-lang.org/en/news/2008/08/08/multiple-vulnerabilities-in-ruby/">threats</a>?</p></li>
+</ol>
+
+
+<p>Let&rsquo;s do some research.  The code used to be at <a href="http://rubyforge.org/projects/cruisecontrolrb/">rubyforge</a>.  Looks like the code is still there.  However, according to this <a href="http://rubyforge.org/pipermail/cruisecontrolrb-users/2008-August/000560.html">post</a>, they are moving to github.  The link in that post has an extra *, but sure enough, you can find cruisecontrol.rb at <a href="http://github.com/thoughtworks/cruisecontrol.rb">http://github.com/thoughtworks/cruisecontrol.rb</a>.  Cool, now I know where to get it.</p>
+
+<p>What about git support?  A <a href="http://www.google.com/search?hl=en&amp;q=cruisecontrolrb+git&amp;btnG=Google+Search">google search</a>, turns up <a href="http://github.com/benburkert/cruisecontrolrb/tree/master">benburkert</a>&rsquo;s github branch.  Looks promising.  Searching git hub for <a href="http://github.com/search?q=cruisecontrolrb">cruisecontrol.rb</a> shows several forks, but these are all from rubyforge git.  I want it straight from thoughtworks.  Digging a little in the code shows it is already in the thoughtworks master.  There is even a mercurial adapter.  Let&rsquo;s give it a try.  Sure enough, it works just fine with</p>
+
+<pre><code>cruise add projectname -r file:///home/me/src/gitproject -s git
+</code></pre>
+
+<p>Run</p>
+
+<pre><code>cruise help add
+</code></pre>
+
+<p>for all the options.</p>
+
+<p>Great, 2 for 2.  Now what about support for Rails 2.1?   Unfortunately, it is not there.  Cruisecontrol.rb currently runs with rails 1.2.3, and a simple version change in environment.rb doesn&rsquo;t fix it.  (Didn&rsquo;t figure it would but I had to try it right?)   For all of us who have updated to ruby 1.8.7, we are stuck for now.  Ruby 1.8.7 only runs rails 2.1.  My <a href="http://www.mjwall.com/2008/08/multiple-versions-of-ruby-with-stow/">last</a> post about multiple version of ruby doesn&rsquo;t really help either.</p>
+
+<p>I did find this post answered by the team about porting cruisecontrol to <a href="http://www.nabble.com/Re:-Plans-to-upgrade-to-Rails-2.1--td18115378.html">merb</a>.  That sounds interesting indeed.</p>
+
+<p>Until then, who is working on a rails 2.1 version of cruisecontrol.rb?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Multiple versions of ruby with stow]]></title>
+    <link href="http://mjwall.com/blog/2008/08/16/multiple-versions-of-ruby-with-stow/"/>
+    <updated>2008-08-16T18:48:24-04:00</updated>
+    <id>http://mjwall.com/blog/2008/08/16/multiple-versions-of-ruby-with-stow</id>
+    <content type="html"><![CDATA[<p>What is the best way to support multiple versions of ruby?</p>
+
+<p>Some options:</p>
+
+<ul>
+<li><p><a href="http://www.zenspider.com/ZSS/Products/ZenTest/#rsn">Multiruby</a> looks like it may do what I want.  I already have it installed, because I am autotest-addicted (first coined by <a href="http://drnicwilliams.com/2008/02/19/one-stop-javascript-unit-testing-for-rails2/">Dr Nic</a>.</p></li>
+<li><p>Michael Greenly posted <a href="http://blog.michaelgreenly.com/2007/12/multiple-ruby-version-on-ubuntu.html">this</a>, which would work since I am running ubuntu.</p></li>
+<li><p>A buddy recommended <a href="http://www.gnu.org/software/stow/manual.html">GNU Stow</a>.</p></li>
+</ul>
+
+
+<p>I chose to use stow.  Call me old fashion, but I really prefer doing things be hand.  I didn&rsquo;t like the thought of having to type ruby1.8.6 vs ruby1.8.7 proposed by Michael Greenly, but I did pick up a few things from his article.  I am interested in the testing against multiple version like multiruby provides.  However, the main reason I want different ruby installs is because different clients have different environments.  So here is how I did it.  For reference, I am using Ubuntu 8.0.4.</p>
+
+<ol>
+<li> <strong>Remove all ubuntu ruby packages.</strong></li>
+</ol>
+
+
+<p>Use</p>
+
+<pre><code>dpkg --list | grep -i ruby
+</code></pre>
+
+<p>to find all the packages you have installed.  Then use</p>
+
+<pre><code>sudo apt-get remove &lt;em&gt;packagename&lt;/em&gt;
+</code></pre>
+
+<p>to remove those packages.  We are going to build all of these by hand.</p>
+
+<ol>
+<li> <strong>Make sure you have the ubuntu build packages</strong></li>
+</ol>
+
+
+<p>Run the following to make sure you have packages necessary to build ruby with</p>
+
+<pre><code>sudo apt-get build-dep ruby1.8
+</code></pre>
+
+<p>This will install stuff like autoconf and automake if you don&rsquo;t already have them.</p>
+
+<ol>
+<li> <strong>Setup your filesystem for stow.</strong></li>
+</ol>
+
+
+<p>Let&rsquo;s first make a directory under /usr/local named stow with</p>
+
+<pre><code>sudo mkdir /usr/local/stow
+</code></pre>
+
+<p>We will install everything here and then use stow to create symlinks in /usr/local/bin. Also, change the directory permission for /usr/local/stow so you can install stuff there as your user.  This has the added benefit of alerting you if you configure wrong or try to overwrite something.  We will only need to sudo to run the stow command.  Run the following to see what groups you are in</p>
+
+<pre><code>groups username
+</code></pre>
+
+<p>Hopefully there will be a dev or adm or something similiar.  I will use the adm group.  Run the following to change the group and permissions on /usr/local/stow.</p>
+
+<pre><code>sudo chgrp -R adm /usr/local/stow
+</code></pre>
+
+<p>and</p>
+
+<pre><code>chmod -R 775 /usr/local/stow
+</code></pre>
+
+<ol>
+<li> <strong>Install stow</strong></li>
+</ol>
+
+
+<p>Download the stow package with from <a href="ftp://mirrors.kernel.org/gnu/stow/stow-1.3.3.tar.gz.">ftp://mirrors.kernel.org/gnu/stow/stow-1.3.3.tar.gz.</a>  Then</p>
+
+<pre><code>tar -zxf stow-1.3.3.tar.gz
+</code></pre>
+
+<p>to extract everything.  Go into the directory and then run the following.</p>
+
+<pre><code>./configure --prefix=/usr/local
+</code></pre>
+
+<p>Then install it with make and sudo make install</p>
+
+<p>I considered installing stow under the stow directory but figured it was overkill</p>
+
+<ol>
+<li> <strong>Install ruby1.8.6</strong></li>
+</ol>
+
+
+<p>Get the code with from <a href="ftp://ftp.ruby-lang.org/pub/ruby/ruby-1.8.6-p287.tar.gz.%C2%A0">ftp://ftp.ruby-lang.org/pub/ruby/ruby-1.8.6-p287.tar.gz.%C2%A0</a> Unzip and cd into the directory.  Run</p>
+
+<pre><code>./configure --prefix=/usr/local/stow/ruby-1.8.6-p287
+</code></pre>
+
+<p>and then</p>
+
+<pre><code>make &amp;&amp; make install
+</code></pre>
+
+<p>You shouldn&rsquo;t need to sudo if you have the permissions correct.  Run</p>
+
+<pre><code>make install-doc
+</code></pre>
+
+<p>if you want ri and rdoc, but it takes a while.</p>
+
+<ol>
+<li> <strong>Install ruby1.8.7</strong></li>
+</ol>
+
+
+<p>Much like the 1.8.6 version, get the code with <a href="ftp://ftp.ruby-lang.org/pub/ruby/ruby-1.8.7-p72.tar.gz">ftp://ftp.ruby-lang.org/pub/ruby/ruby-1.8.7-p72.tar.gz</a> Unzip and cd into the directory.  Run</p>
+
+<pre><code>./configure --prefix=/usr/local/stow/ruby-1.8.7-p72
+</code></pre>
+
+<p>and then</p>
+
+<pre><code>make &amp;&amp; make install
+</code></pre>
+
+<p>Again run</p>
+
+<pre><code>make install-doc
+</code></pre>
+
+<p>if you want.</p>
+
+<ol>
+<li> <strong>Update your path</strong></li>
+</ol>
+
+
+<p>Make sure that /usr/local/bin is on your path.  Since we don&rsquo;t have ruby installed anywhere else, you can put it at the end.  You could put it earlier if you have other versions installed.</p>
+
+<pre><code>echo $PATH
+</code></pre>
+
+<p>to see if you already have it.  If not, go to your .bashrc and add it where ever PATH is exported.</p>
+
+<ol>
+<li> <strong>Run stow</strong></li>
+</ol>
+
+
+<p>Lets set up ruby 1.8.7.  Change to the /usr/local/stow directory and run</p>
+
+<pre><code>sudo stow ruby-1.8.7-p72
+</code></pre>
+
+<p>All the symlinks are created for you.</p>
+
+<ol>
+<li> <strong>Install rubygems, gems and then stow again</strong></li>
+</ol>
+
+
+<p>Running</p>
+
+<pre><code>ruby -v
+</code></pre>
+
+<p>should show you it is version 1.8.7.  You will need to install rubygems now. Get it from <a href="http://rubyforge.org/frs/download.php/38646/rubygems-1.2.0.tgz">http://rubyforge.org/frs/download.php/38646/rubygems-1.2.0.tgz</a> and then extract it into a directory. Change into that directory and run</p>
+
+<pre><code>ruby setup.rb
+</code></pre>
+
+<p>Now rubygems is installed in the ruby directory, but you will need run stow again.  Change to /usr/local/stow and run</p>
+
+<pre><code>sudo stow ruby-1.8.7-p87
+</code></pre>
+
+<p>Running the command</p>
+
+<pre><code>which gem
+</code></pre>
+
+<p>should show you have it installed.  You can now install gems like mongrel, rails etc.  When you finish installing gems, be sure to run stow again so it will symlink the executables.</p>
+
+<p>That&rsquo;s it. Switching to ruby 1.8.6 is easy.  Go to /usr/local/stow and run</p>
+
+<pre><code>stow -D ruby-1.8.7-p22 &amp;&amp; stow -R ruby-1.8.6-p287
+</code></pre>
+
+<p>The -D removes all the symlinks.  Run the following to see all the options for stow</p>
+
+<pre><code>stow -h
+</code></pre>
+
+<p>Follow the instructions above to setup rubygems and all the gems again.  Remember to rerun stow so the executable are symlinked.  After you install the gems the first time, switching is simply a matter of stow -D and then stow -R.  Pretty clean and easy.</p>
+
+<p>A great thing about stow is I can use it for other packages as well, like mysql or php.  I&rsquo;ll note that ruby doesn&rsquo;t have a</p>
+
+<pre><code>make uninstall
+</code></pre>
+
+<p>so it is ugly if you want to remove the packages.  With stow, all you have to do is remove the directory.</p>
+
+<p>Notes:
+I tried to cover most commands I used.  If you need more unix reference, try something like   <a href="http://www.ee.surrey.ac.uk/Teaching/Unix/index.html">this</a> or <a href="http://freeengineer.org/learnUNIXin10minutes.html">this</a>.  Google is your friend.</p>
+
+<p>In addition to the articles linked above, I also read the following when writing this post <a href="http://blog.danieroux.com/2005/08/07/using-gnu-stow-to-manage-source-installs/">one</a> and <a href="http://www.linux.com/feature/127393">two</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Moving to Wordpress]]></title>
+    <link href="http://mjwall.com/blog/2008/07/30/moving-to-wordpress/"/>
+    <updated>2008-07-30T21:20:41-04:00</updated>
+    <id>http://mjwall.com/blog/2008/07/30/moving-to-wordpress</id>
+    <content type="html"><![CDATA[<p>Alright, I give.  Rails on shared hosting really sucks.  I&rsquo;ve seen reports of success with <a href="http://modrails.com/">Phusion Passenger</a>, but my <a href="http://refer.asmallorange.com/10815">host</a> doesn&rsquo;t support it yet.  I wrote about my some of this <a href="http://mjwall.com/?p=13">issues</a> I have had.  So welcome to wordpress.  Same theme, mostly, with less crashes.  Maybe this will encourage me to write more.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Merb Notes]]></title>
+    <link href="http://mjwall.com/blog/2008/04/02/merb-notes/"/>
+    <updated>2008-04-02T13:55:00-04:00</updated>
+    <id>http://mjwall.com/blog/2008/04/02/merb-notes</id>
+    <content type="html"><![CDATA[<p>Since my last post, I have been looking more and more at Merb.  Just some random notes</p>
+
+<ul>
+<li><p>Looks like Merb 0.9.2 got some fcgi <a href="http://github.com/wycats/merb-more/commit/b5467e5138b8c18c0c521a5fce5ea529f1a090d6">love</a>. That is what I want to try to replace rails on my shared host.</p></li>
+<li><p>Get on IRC if you need help – irc.freenode.net#merb.  Really, IRC.</p></li>
+<li><p>If you can’t stay on IRC, go to <a href="http://groups.google.com/group/merb">http://groups.google.com/group/merb</a> for a log</p></li>
+<li><p>Use these <a href="http://www.gweezlebur.com/2008/3/1/quickie-sake-tasks-for-merb-hackers">sake</a> tasks if you are running the latest.  <code>sudo sake merb:update merb:install</code> will update core, more and plugins</p></li>
+<li><p>merb-rspec is no longer in plugins, but included in core</p></li>
+<li><p>Watch this from <a href="http://mtnwestrubyconf2008.confreaks.com/02zygmuntowicz.html">Confreaks</a>.  Worth the investment.</p></li>
+<li><p>Most tutorials and articles are dated.  <a href="http://crazycool.co.uk/blog/2008/3/17/Adventures+in+Merb/">This</a> one helped though.</p></li>
+</ul>
+
+
+<p>Looking forward to more from merb….</p>
+
+<p>UPDATE:  Having some trouble with typo’s caching.  Going to repost this article.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New laptop]]></title>
+    <link href="http://mjwall.com/blog/2008/03/05/new-laptop/"/>
+    <updated>2008-03-05T21:19:00-05:00</updated>
+    <id>http://mjwall.com/blog/2008/03/05/new-laptop</id>
+    <content type="html"><![CDATA[<p>One more quick post.  Last week I purchased an inexpensive (shall I say cheap) laptop from WalMart.  It is a <a href="http://www.toshibadirect.com/td/b2c/rdet.jsp?poid=404159&amp;seg=HHO">Toshiba A215-S5808</a>.  I booted once in Vista to burn a cd and them immediately installed <a href="http://www.ubuntu.com/">Ubuntu 7.10</a>.  Almost all my hardware was recognized, except the wireless and sound.  This <a href="http://www.datanorth.net/~cuervo/blog/linux-on-the-satellite-a215-s7407/">post</a> was very helpful in resolving those issues.  It’s only been a week, but I keep asking myself, “Why did I code so long in Windows”.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Shared Hosting and a little Merb]]></title>
+    <link href="http://mjwall.com/blog/2008/03/05/rails-shared-hosting-and-a-little-merb/"/>
+    <updated>2008-03-05T09:30:00-05:00</updated>
+    <id>http://mjwall.com/blog/2008/03/05/rails-shared-hosting-and-a-little-merb</id>
+    <content type="html"><![CDATA[<p>It has taken me almost 2 months to put this post together, but at the time, DHH’s <a href="http://www.loudthinking.com/posts/21-the-deal-with-shared-hosts">article</a> on shared hosting support for Rail was very timely.  I use shared hosting to run this blog and have had some headaches. <a href="http://www.rubyinside.com/no-true-mod_ruby-is-damaging-rubys-viability-on-the-web-693.html">This</a> is another great post on the subject.  Lots, and I mean lots, of interesting comments.  Part of those 2 months was getting through those comments.</p>
+
+<p>So what can we do?  <a href="http://rubini.us/">Rubinius</a> / <a href="http://brainspl.at/articles/2008/02/12/what-do-you-want-to-see-in-mod_rubinius">mod_rubinus</a> seem really interesting.  Long term, this may be a great solution.  More immediately, I am intrigued by <a href="http://rack.rubyforge.org/">Rack</a>.  Rack is just a webserver abstraction and would not solve the lack of threading in Rails though.  But there is a Rack adapter built into <a href="http://www.merbivore.com/">Merb</a>, which is thread safe.  I will be spending some time looking into Merb and I’ll document my investigation here.</p>
+
+<p>So what headaches have I had with shared hosting.  Only a few, because this site doesn’t get much traffic.  Here are some details about my setup <em>(warning, here comes an ad)</em>.  I have the “Small” plan from <a href="http://refer.asmallorange.com/10815">asmallorange</a> (ASO).  The price is very reasonable and the features are good:  SSH access, Rails support, unlimited mail accounts, unlimited mysql databases, unlimited subdomains and many other features.  Support has been great, they have installed every gem I have asked for within minutes without a hard time, even <a href="http://code.whytheluckystiff.net/camping/">Camping</a> but that is a story for another time.  ASO also has a reseller plan so you can sell off part of your hosting and make a little money.  Ok, back to the post.</p>
+
+<p>So what problems have I had with shared hosting?  Like most shared hosts ASO uses FastCGI to support Rails.  Mongrel is too expensive in a shared hosting environment.  My problems have been with FastCGI and limits ASO has in place.  They allow 5 instances of FastCGI to run concurrently.  Again, no problem with the amount of traffic I get.  However, idle instances die after 4 minutes.  So at some point, all my instances die and the next request has to startup FastCGI and then serve the page.  It can take 2 minutes, which is too long.  There are some reaper and spinner scripts in Rails, but I don’t have enough permissions on my server to run them.</p>
+
+<p>Another problem I had came from wanting to mimic my production environment as closely as possible on my laptop.  I tried in vain to install Apache with FastCGI.  Yes, it is windows and I was using Cygwin, but after 2 weeks of off and on install and configuration failures, I gave up.</p>
+
+<p>If FastCGI is running, I have had no complaints with performance.  You can judge that for yourself.  I don’t fault ASO either.  The restrictions they place on FastCGI make sense for their business model.  Shared hosting for Rails is hard, and I think they have done a good job accommodating the community so far.  I would recommend them if you want to support for multiple languages, if you are looking for really inexpensive hosting, and if you understand what you are getting into.  Certainly they are good as <a href="http://blog.dreamhost.com/2008/01/07/how-ruby-on-rails-could-be-much-better/">Dreamhost</a>
+All the other Rails apps I work on are run with mongrel clusters.  Currently, I think that is best option for production sites with a decent or even large amounts of traffic.  I’ll be interested to see if Ezra recommends anything else in his new <a href="http://brainspl.at/articles/2008/02/21/at-long-last-my-deploying-rails-applications-book-is-done">book</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim and Rails]]></title>
+    <link href="http://mjwall.com/blog/2008/01/17/vim-and-rails/"/>
+    <updated>2008-01-17T11:24:00-05:00</updated>
+    <id>http://mjwall.com/blog/2008/01/17/vim-and-rails</id>
+    <content type="html"><![CDATA[<p>I do almost all my development using <a href="http://www.vim.org/">vim/gvim</a>.  Vim is great.  Yes, I have tried IDEs, and will use Eclipse when doing some java work.  Ever since I started developing in Rails though, it has been me and vim.</p>
+
+<p>I see lots of posts with rails code.  Many of them are from Textmate, a Mac text editor, and the <a href="http://alternateidea.com/blog/articles/2006/1/3/textmate-vibrant-ink-theme-and-prototype-bundle">VibrantInk</a> color scheme looks great.  I already use <a href="http://rails.vim.tpope.net/">rails.vim</a> which is a great plugin by Tim Pope for rails development.  He has also released a color scheme based on VibrantInk called <a href="http://www.vim.org/scripts/script.php?script_id=1891">vividchalk</a>.  There is another VibrantInk port for vim oddly enough called <a href="http://blog.jozilla.net/2006/10/05/vibrantink-theme-for-vim/">vibrantink.vim</a>.  Both are really good, but I use the vibrantink.vim color scheme getter for couple of reasons.  One, it looks better in console vim.  Two, the italics in vividchalk through me off.</p>
+
+<p>Here is a screenshot from <a href="http://www.flickr.com/photos/37743236@N00/952130787/">flicker</a> with a comparison of the 3 made by Jo Vermeulen, the guy who made vibrantink.vim</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Typo doesn't have stats]]></title>
+    <link href="http://mjwall.com/blog/2008/01/01/typo-doesnt-have-stats/"/>
+    <updated>2008-01-01T12:14:00-05:00</updated>
+    <id>http://mjwall.com/blog/2008/01/01/typo-doesnt-have-stats</id>
+    <content type="html"><![CDATA[<p>Now that I have used <a href="http://www.typosphere.org">typo</a> for a couple of days now, I realized it is missing page stats.  Maybe it is vanity, but if I am going to spend time posting information, I want to know when someone is looking at it.  So I looked on the mailing list and didn’t see anything current that would help.  My first thought, right on, now I have a chance to write my first open source plugin.  Then I came to my senses and decided to google around.</p>
+
+<p>I found a post on <a href="http://www.juixe.com/techknow/index.php/2007/02/04/rails-google-analytics-plugin/">Juixe TechKnow</a> about a plugin from <a href="http://woss.name/2006/05/09/google-analytics-plugin/">Graeme</a>.  Looked pretty good and I have been wanting to try google analytics.  I also found this <a href="http://www.artweb-design.de/projects/ruby-on-rails-plugin-google-analytics">plugin</a> which appears to be an updated version of Graeme’s.  I tried the blue egg edition, but was getting errors about a missing Liquid constant.  Didn’t feel like adding <a href="http://code.google.com/p/liquid-markup/">liquid</a> so I went back to the first plugin.</p>
+
+<p>Install and configuration was simple.  Signed up for <a href="https://www.google.com/analytics/home/">google analytics</a>, installed the plugin, modified my environment.rb.  Now I am collecting stats.</p>
+
+<p>I did run see this <a href="http://article.gmane.org/gmane.comp.web.typo.user/605/match=stats">discussion</a> on the mailing list about gathering stats from feeds.  I have already signed up for <a href="http://www.feedburner.com/fb/a/home">feedburner</a> and replaced the syndication sidebar with a static one.</p>
+
+<p>Should I be concerned?  Everything has been too straightforward.</p>
+
+<p>The only issue I see is that the plugin uses the older version of google analytics tracking, urchin.js.  Last month, google launched a new script, ga.js.  See <a href="http://www.google.com/support/googleanalytics/bin/answer.py?hl=en&amp;answer=69588">here</a> for more info.  Maybe I’ll update the plugin.  I also want to check to see if typo is caching the javascript file or downloading it every time.</p>
+
+<p>BTW, Happy New Year.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hail to the Redskins]]></title>
+    <link href="http://mjwall.com/blog/2007/12/30/hail-to-the-redskins/"/>
+    <updated>2007-12-30T22:01:00-05:00</updated>
+    <id>http://mjwall.com/blog/2007/12/30/hail-to-the-redskins</id>
+    <content type="html"><![CDATA[<p>Congratulations to the <strong>Washington Redskins</strong> as they finish the season with a bang and make it into the playoffs.  It has been an especially emotional season for <em>us</em> die hard and <em>the</em> wanna be fans alike.  Good luck in the post season.  R.I.P. #21</p>
+
+<p><img src="http://media3.washingtonpost.com/wp-dyn/content/photo/2007/12/30/PH2007123002197.jpg" alt="" /></p>
+
+<p><img src="http://www.mjwall.com/files/PortisTribute.jpg" alt="" /></p>
+
+<p>_Photo from <a href="http://www.washingtonpost.com/wp-dyn/content/photo/2007/12/30/PH2007123002197.html_">http://www.washingtonpost.com/wp-dyn/content/photo/2007/12/30/PH2007123002197.html_</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New site]]></title>
+    <link href="http://mjwall.com/blog/2007/12/30/new-site/"/>
+    <updated>2007-12-30T21:39:00-05:00</updated>
+    <id>http://mjwall.com/blog/2007/12/30/new-site</id>
+    <content type="html"><![CDATA[<p>Well, nothing like waiting until the last minute.  My personal weblog has been down for over a year.  One of my 2007 new year resolutions was get it back up.  Here goes.</p>
+
+<p>Over the past year or so, I have been doing mostly Ruby on Rails work, both personally and professionally.  I had to find another job about 3 months ago, and I was dreading having to go back to Java.  RoR is just so much fun.  I wanted to set my new weblog with RoR and looked at both <a href="http://www.typosphere.org/">Typo</a> and <a href="http://mephistoblog.com/">Mephisto</a> as well as few others.  Why did I choose Typo?  I think it was after listening to <a href="http://podcast.rubyonrails.org/programs/1/episodes/stuart-halloway">Stuart Halloway’s podcast</a>.  So far so good.  I have to say, I am surprised by how easy it was to get set up and going.  Much different than my experience with drupal 6 years ago.  Surely I know more now, but I am still surprised.  I’ll post more info about the set in the <a href="http://www.mjwall.com/pages/about">about</a> page</p>
+
+<p>I plan to blog mostly about technology, things I find interesting and things I learn.  Maybe someone will find it useful.</p>
+
+<p>Thanks for stopping by.</p>
 ]]></content>
   </entry>
   

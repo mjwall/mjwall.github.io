@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: misc | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/misc/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hail to the Redskins]]></title>
+    <link href="http://mjwall.com/blog/2007/12/30/hail-to-the-redskins/"/>
+    <updated>2007-12-30T22:01:00-05:00</updated>
+    <id>http://mjwall.com/blog/2007/12/30/hail-to-the-redskins</id>
+    <content type="html"><![CDATA[<p>Congratulations to the <strong>Washington Redskins</strong> as they finish the season with a bang and make it into the playoffs.  It has been an especially emotional season for <em>us</em> die hard and <em>the</em> wanna be fans alike.  Good luck in the post season.  R.I.P. #21</p>
+
+<p><img src="http://media3.washingtonpost.com/wp-dyn/content/photo/2007/12/30/PH2007123002197.jpg" alt="" /></p>
+
+<p><img src="http://www.mjwall.com/files/PortisTribute.jpg" alt="" /></p>
+
+<p>_Photo from <a href="http://www.washingtonpost.com/wp-dyn/content/photo/2007/12/30/PH2007123002197.html_">http://www.washingtonpost.com/wp-dyn/content/photo/2007/12/30/PH2007123002197.html_</a></p>
+]]></content>
+  </entry>
+  
+</feed>

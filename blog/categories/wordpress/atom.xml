@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: wordpress | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/wordpress/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Moving to Wordpress]]></title>
+    <link href="http://mjwall.com/blog/2008/07/30/moving-to-wordpress/"/>
+    <updated>2008-07-30T21:20:41-04:00</updated>
+    <id>http://mjwall.com/blog/2008/07/30/moving-to-wordpress</id>
+    <content type="html"><![CDATA[<p>Alright, I give.  Rails on shared hosting really sucks.  I&rsquo;ve seen reports of success with <a href="http://modrails.com/">Phusion Passenger</a>, but my <a href="http://refer.asmallorange.com/10815">host</a> doesn&rsquo;t support it yet.  I wrote about my some of this <a href="/?p=13">issues</a> I have had.  So welcome to wordpress.  Same theme, mostly, with less crashes.  Maybe this will encourage me to write more.</p>
+]]></content>
+  </entry>
+  
+</feed>

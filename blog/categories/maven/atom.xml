@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: maven | mjwall.com]]></title>
+  <link href="http://mjwall.com/blog/categories/maven/atom.xml" rel="self"/>
+  <link href="http://mjwall.com/"/>
+  <updated>2013-07-14T22:03:51-04:00</updated>
+  <id>http://mjwall.com/</id>
+  <author>
+    <name><![CDATA[Michael Wall]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Grails and Maven with no Maven]]></title>
+    <link href="http://mjwall.com/blog/2009/01/10/grails-and-maven-with-no-maven/"/>
+    <updated>2009-01-10T21:27:07-05:00</updated>
+    <id>http://mjwall.com/blog/2009/01/10/grails-and-maven-with-no-maven</id>
+    <content type="html"><![CDATA[<p>According the <a href="http://www.grails.org/1.1-beta2+Release+Notes">Grails 1.1 Beta2 Release Notes</a>, Grails 1.1 will have better Maven integration.  I think that is great news allowing more integration between different java projects.  It means this post may not relevant for very long though.</p>
+
+<p>For all it&rsquo;s complexity, I like maven.  Sometimes it makes complex tasks easier, but not always.  Here is my situation.  There are several java projects already using maven.  I am building a grails project that will be used by some of these projects.  The easiest integration is to package up a war file and deploy it to our local maven repository.  <a href="http://nexus.sonatype.org/">Nexus</a> is great by the way.  The other projects can include my grails project as a dependency.  So what is the best way to do that?  Right, I hear you.  By hand.  However, I need to automate this.</p>
+
+<p>I looked at the <a href="http://forge.octo.com/maven/sites/mtg/grails-maven-plugin/">grails-maven-plugin</a>, but it is too much.  I am not trying to mavenize my project, just deploy it to Nexus.</p>
+
+<p>Luckily, there is as a cleaner answer.   Creating scripts in grails is <a href="http://docs.codehaus.org/display/GRAILS/Command+Line+Scripting">easy</a>.  Those scripts can use the <a href="http://maven.apache.org/ant-tasks/index.html">maven-ant-tasks</a>.  Download the <a href="http://www.apache.org/dyn/closer.cgi/maven/binaries/maven-ant-tasks-2.0.9.jar">jar</a> file and put it in your lib directory.</p>
+
+<p>I&rsquo;ll create 2 tasks, one handle the &lsquo;maven install&rsquo; so I can test locally and one to handle &lsquo;maven deploy&rsquo;.  We need a pom file, but instead of checking one in, let&rsquo;s generate it from the project so it picks up the latest version etc.  (Note, I studied the <a href="http://github.com/russel/gant/tree/master/build.gant">gant</a> build file pretty closely).  Here is an example of MavenInstall.groovy file from the scripts directory</p>
+
+<p>1 includeTargets &lt;&lt; grailsScript ( "War" )
+2
+3 final antlibXMLns = &lsquo;antlib:org.apache.maven.artifact.ant&rsquo;
+4 final tempPomFile = &ldquo;pom.xml&rdquo;
+5
+6 target (preparePom : &ldquo;Generate a temporary pom file&rdquo;) {
+7  depends(packageApp)  <em>//so config.maven properties are loaded</em>
+8  def writer = new StringWriter()
+9  def builder = new groovy.xml.MarkupBuilder(writer)
+10  builder.project(xmlns:&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a>&rdquo;,
+11  &lsquo;xmlns:xsi&rsquo;:&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a>&rdquo;,
+12  &lsquo;xsi:schemaLocation&rsquo;:&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a> <a href="http://maven.apache.org/maven-v4_0_0.xsd">http://maven.apache.org/maven-v4_0_0.xsd</a>&rdquo;) {
+13  &lsquo;modelVersion&rsquo; &lsquo;4.0.0&rsquo;
+14  &lsquo;groupId&rsquo; &lsquo;com.mjwall&rsquo;
+15  &lsquo;artifactId&rsquo; grailsAppName
+16  &lsquo;packaging&rsquo; &lsquo;war&rsquo;
+17  &lsquo;version&rsquo; grailsAppVersion
+18  }
+19
+20  File temp = new File(tempPomFile)
+21  temp.write writer.toString()
+22  def pom =ant.&ldquo;${antlibXMLns}:pom&rdquo; ( file : tempPomFile , id : tempPomFile )
+23  echo(&ldquo;Temporary pom file written to ${tempPomFile}, don&rsquo;t forget to clean up&rdquo;)
+24  return tempPomFile
+25 }
+26
+27 target (deletePom : &ldquo;Clean up the temporary pom file&rdquo;) {
+28  new File(tempPomFile).delete()
+29 }
+30
+31 target (getWarName : &ldquo;Return the war name defined by the app configs&rdquo;) {
+32  depends(war)
+33  <em>// bug in grails clean, doesn&rsquo;t seem to delete war from a custom location defined by grails.war.destFile</em>
+34  return warName
+35 }
+36
+37 target (default : &ldquo;Install to local maven repository&rdquo;) {
+38  depends(war)
+39  def tempPom = preparePom()
+40  ant.&ldquo;${antlibXMLns}:install&rdquo; ( file : getWarName() ) { pom ( refid : tempPom ) }
+41  deletePom()
+42 }
+43</p>
+
+<p>Not too scary, but what is going on here?  The default task you will see depends on the war file being built.  A temporary pom is created using the value defined in application.properties.  Then the maven-ant-task for install is run and the pom is deleted.  Pretty simple huh?  It is once you see an example anyway.</p>
+
+<p>How about a maven deploy.  Basically the same thing, except the pom needs to generate a distributionManagement section.  I set up a couple of properties in my Config.groovy at the end called maven.remoteReleaseUrl and maven.remoteSnapshotUrl.  Change the pom generate to include them.  Looks like this</p>
+
+<p>6 target (preparePom : &ldquo;Generate a temporary pom file&rdquo;) {
+7  depends(packageApp)  <em>//so config.maven properties are loaded</em>
+8  def writer = new StringWriter()
+9  def builder = new groovy.xml.MarkupBuilder(writer)
+10  builder.project(xmlns:&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a>&rdquo;,
+11  &lsquo;xmlns:xsi&rsquo;:&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a>&rdquo;,
+12  &lsquo;xsi:schemaLocation&rsquo;:&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a> <a href="http://maven.apache.org/maven-v4_0_0.xsd">http://maven.apache.org/maven-v4_0_0.xsd</a>&rdquo;) {
+13  &lsquo;modelVersion&rsquo; &lsquo;4.0.0&rsquo;
+14  &lsquo;groupId&rsquo; &lsquo;com.mjwall&rsquo;
+15  &lsquo;artifactId&rsquo; grailsAppName
+16  &lsquo;packaging&rsquo; &lsquo;war&rsquo;
+17  &lsquo;version&rsquo; grailsAppVersion
+20  &lsquo;distributionManagement&rsquo; {
+21  &lsquo;repository&rsquo; {
+22  &lsquo;id&rsquo; &lsquo;releases&rsquo;
+23  &lsquo;name&rsquo; &lsquo;Internal Releases&rsquo;
+24  &lsquo;url&rsquo; config.maven.remoteReleaseUrl <em>//defined in Config.groovy</em>
+25  }
+26  &lsquo;snapshotRepository&rsquo; {
+27  &lsquo;id&rsquo; &lsquo;snapshots&rsquo;
+28  &lsquo;name&rsquo; &lsquo;Internal Snapshots&rsquo;
+29  &lsquo;url&rsquo; config.maven.remoteSnapshotUrl <em>//defined in Config.groovy</em>
+30  &lsquo;uniqueVersion&rsquo; &lsquo;true&rsquo;
+31  }
+18  }
+19
+20  File temp = new File(tempPomFile)
+21  temp.write writer.toString()
+22  def pom =ant.&ldquo;${antlibXMLns}:pom&rdquo; ( file : tempPomFile , id : tempPomFile )
+23  echo(&ldquo;Temporary pom file written to ${tempPomFile}, don&rsquo;t forget to clean up&rdquo;)
+24  return tempPomFile
+25 }</p>
+
+<p>Then instead of calling ant.&ldquo;${antlibXMLns}:install&rdquo;, call ant.&ldquo;${antlibXMLns}:deploy&rdquo;</p>
+
+<p>Couple of notes.  I did run into problems with my settings.xml file defined in ~/.m2, so I ended up creating one much like I did with the pom.xml.  Only used when deploying, so it is not built for the install.  Finally, because grails can only run one task per script, I DRYed up this whole thing with one file called MavenUtils that included all code for both install and deploy.  Then, my MavenInstall file just loads the MavenUtils and calls install.</p>
+
+<p>Wow, more explanation than I thought it would.  And I guess the title is not entirely accurate.  I am using maven, but not by calling the maven executable directly.  Hopefully the new Maven/Grails integration will make this easier.  Fingers crossed.</p>
+]]></content>
+  </entry>
+  
+</feed>

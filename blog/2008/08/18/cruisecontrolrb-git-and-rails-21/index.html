@@ -1,0 +1,195 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cruisecontrolrb, git and rails 2.1 - mjwall.com</title>
+	<meta name="author" content="Michael Wall">
+
+	
+	<meta name="description" content="Cruisecontrolrb, Git and Rails 2.1 I really love cruisecontrol.rb in a team environment.  The ability to run tests against every commit is great, &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="mjwall.com" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://mjwall.com/blog/2008/08/18/cruisecontrolrb-git-and-rails-21/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("mjwall@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+</div>
+<hgroup>
+  <h1><a href="/">mjwall.com</a></h1>
+</hgroup>
+
+<p class="subtitle">Just a guy and his computer</p>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+
+<section class="aboutme">
+  <p>
+    My ramblings about stuff I find interesting or would like to reference later.  Mostly tech stuff.
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/101436546762602464030" rel="author" title="Google+">Google+</a>
+		
+		
+		<a class="twitter" href="http://twitter.com/mjwalldotcom" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/mjwall" title="GitHub">GitHub</a>
+		
+		
+		<a class="coderwall" href="https://coderwall.com/mjwall" title="Coderwall">Coderwall</a>
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Cruisecontrolrb, Git and Rails 2.1</h1>
+	<div class="entry-content" itemprop="articleBody"><p>I really love cruisecontrol.rb in a team environment.  The ability to run tests against every commit is great, and it is such fun being the &ldquo;build police&rdquo;.</p>
+
+<blockquote><p>Excuse me sir, can I see your license to commit please?</p></blockquote>
+
+<p>We can have some fun with that one.</p>
+
+<blockquote><p>This license expired just before the dotcom bubble</p>
+
+<p>You have a languague restriction here that says you can commit only while wearing vb.net</p>
+
+<p>I need to see some proof of build collision insurance.</p></blockquote>
+
+<p>But I digress. Sorry, back to the program.</p>
+
+<p>As rails grows, I have some questions.</p>
+
+<ol>
+<li><p> Where the heck is code for cruise control?</p></li>
+<li><p> Can I use git?</p></li>
+<li><p> Will it run against rails 2.1 since I am security conscience and have updated after the recent <a href="http://www.ruby-lang.org/en/news/2008/06/20/arbitrary-code-execution-vulnerabilities/">warnings</a> and <a href="http://www.ruby-lang.org/en/news/2008/08/08/multiple-vulnerabilities-in-ruby/">threats</a>?</p></li>
+</ol>
+
+
+<p>Let&rsquo;s do some research.  The code used to be at <a href="http://rubyforge.org/projects/cruisecontrolrb/">rubyforge</a>.  Looks like the code is still there.  However, according to this <a href="http://rubyforge.org/pipermail/cruisecontrolrb-users/2008-August/000560.html">post</a>, they are moving to github.  The link in that post has an extra *, but sure enough, you can find cruisecontrol.rb at <a href="http://github.com/thoughtworks/cruisecontrol.rb">http://github.com/thoughtworks/cruisecontrol.rb</a>.  Cool, now I know where to get it.</p>
+
+<p>What about git support?  A <a href="http://www.google.com/search?hl=en&amp;q=cruisecontrolrb+git&amp;btnG=Google+Search">google search</a>, turns up <a href="http://github.com/benburkert/cruisecontrolrb/tree/master">benburkert</a>&rsquo;s github branch.  Looks promising.  Searching git hub for <a href="http://github.com/search?q=cruisecontrolrb">cruisecontrol.rb</a> shows several forks, but these are all from rubyforge git.  I want it straight from thoughtworks.  Digging a little in the code shows it is already in the thoughtworks master.  There is even a mercurial adapter.  Let&rsquo;s give it a try.  Sure enough, it works just fine with</p>
+
+<pre><code>cruise add projectname -r file:///home/me/src/gitproject -s git
+</code></pre>
+
+<p>Run</p>
+
+<pre><code>cruise help add
+</code></pre>
+
+<p>for all the options.</p>
+
+<p>Great, 2 for 2.  Now what about support for Rails 2.1?   Unfortunately, it is not there.  Cruisecontrol.rb currently runs with rails 1.2.3, and a simple version change in environment.rb doesn&rsquo;t fix it.  (Didn&rsquo;t figure it would but I had to try it right?)   For all of us who have updated to ruby 1.8.7, we are stuck for now.  Ruby 1.8.7 only runs rails 2.1.  My <a href="http://www.mjwall.com/2008/08/multiple-versions-of-ruby-with-stow/">last</a> post about multiple version of ruby doesn&rsquo;t really help either.</p>
+
+<p>I did find this post answered by the team about porting cruisecontrol to <a href="http://www.nabble.com/Re:-Plans-to-upgrade-to-Rails-2.1--td18115378.html">merb</a>.  That sounds interesting indeed.</p>
+
+<p>Until then, who is working on a rails 2.1 version of cruisecontrol.rb?</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - Michael Wall -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-3314515-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
