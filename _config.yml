@@ -7,7 +7,9 @@ title: mjwall.com
 subtitle: Just a guy and his computer
 author: Michael Wall
 simple_search: http://google.com/search
-description:
+description: My ramblings about stuff I find interesting or would like to reference later.  Mostly tech stuff.
+# use for gravatar, but not rss
+gravatar_email: mjwall@gmail.com
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -19,7 +21,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email: mjwall@gmail.com
+email:
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -94,7 +96,7 @@ disqus_short_name:
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-3314515-1
 
 # Facebook Like
 facebook_like: false
