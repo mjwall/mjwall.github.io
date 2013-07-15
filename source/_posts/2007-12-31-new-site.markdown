@@ -1,0 +1,22 @@
+---
+author: mjwall
+comments: false
+date: 2007-12-31 02:39:00+00:00
+layout: post
+slug: new-site
+title: New site
+wordpress_id: 17
+categories:
+- rails
+- ruby
+- typo
+alias: /2007/12/new-site/
+---
+
+Well, nothing like waiting until the last minute.  My personal weblog has been down for over a year.  One of my 2007 new year resolutions was get it back up.  Here goes.
+
+Over the past year or so, I have been doing mostly Ruby on Rails work, both personally and professionally.  I had to find another job about 3 months ago, and I was dreading having to go back to Java.  RoR is just so much fun.  I wanted to set my new weblog with RoR and looked at both [Typo](http://www.typosphere.org/) and [Mephisto](http://mephistoblog.com/) as well as few others.  Why did I choose Typo?  I think it was after listening to [Stuart Halloway’s podcast](http://podcast.rubyonrails.org/programs/1/episodes/stuart-halloway).  So far so good.  I have to say, I am surprised by how easy it was to get set up and going.  Much different than my experience with drupal 6 years ago.  Surely I know more now, but I am still surprised.  I’ll post more info about the set in the [about](http://www.mjwall.com/pages/about) page
+
+I plan to blog mostly about technology, things I find interesting and things I learn.  Maybe someone will find it useful.
+
+Thanks for stopping by.
