@@ -4,7 +4,7 @@
   <title><![CDATA[mjwall.com]]></title>
   <link href="http://mjwall.com/atom.xml" rel="self"/>
   <link href="http://mjwall.com/"/>
-  <updated>2013-07-14T22:10:27-04:00</updated>
+  <updated>2013-10-03T13:09:38-04:00</updated>
   <id>http://mjwall.com/</id>
   <author>
     <name><![CDATA[Michael Wall]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs 24 AmpleZen Theme]]></title>
+    <link href="http://mjwall.com/blog/2013/10/03/emacs-24-amplezen-theme/"/>
+    <updated>2013-10-03T12:01:00-04:00</updated>
+    <id>http://mjwall.com/blog/2013/10/03/emacs-24-amplezen-theme</id>
+    <content type="html"><![CDATA[<p>Last week I came across a theme for Emacs called Ample at
+<a href="https://github.com/jordonbiondo/ample-theme">https://github.com/jordonbiondo/ample-theme</a>.  I loved the colors and
+general feel of the theme and starting using it immediately.  It
+worked great and I really like it.  The only issues I had was that
+<a href="https://github.com/senny/rbenv.el" title="rbenv.el">rbenv.el</a>
+in the modeline was an ugly red and the theme didn&rsquo;t work in the
+terminal.  So I started poking at the theme code.  It is the first time I
+have ever opened up a theme and looked at tweaking it.</p>
+
+<p>Along the way, I started looking at other themes.  I kept coming back
+to zenburn-emacs at <a href="https://github.com/bbatsov/zenburn-emacs">https://github.com/bbatsov/zenburn-emacs</a>. I liked
+the way the code was organized and the little touches like
+automatically starting up
+<a href="http://elpa.gnu.org/packages/rainbow-mode.html" title="rainbow-mode">rainbow-mode</a>, which I had never used.</p>
+
+<p>So I decided to try and combining the colors from Ample and the code
+from Zenburn into one theme.  My result is available at
+<a href="https://github.com/mjwall/ample-zen">https://github.com/mjwall/ample-zen</a>.  Zenburn had a bigger palette
+than Ample, so I added in some colors.  I removed packages that I
+don&rsquo;t use, and added some, like rbenv, that I do.  For me, the
+modeline in the active window is important, so I tried to make that
+stand out.  It appears to work OK running Emacs in the terminal as well.</p>
+
+<p>Here is a screenshot</p>
+
+<p><img src="https://raw.github.com/mjwall/ample-zen/master/ample-zen.png" title="Ample Zen Screenshot" alt="Ample Zen Screenshot" /></p>
+
+<p>All the credit goes to Jordon Biondo for his colors in Ample and
+Bozhidar Batsov for his code in Zenburn-Emacs.  Ample-Zen is currently
+available in Marmalade and a pull request has been merged to MELPA.
+Read more about installation at <a href="https://github.com/mjwall/ample-zen#installation">https://github.com/mjwall/ample-zen#installation</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Switching to Octopress]]></title>

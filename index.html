@@ -7,8 +7,8 @@
 	<meta name="author" content="Michael Wall">
 
 	
-	<meta name="description" content="Jul 13th, 2013 octopress, ruby Switching to Octopress Switching to Octopress, see http://octopress.org/. I haven&rsquo;t blogged
-in a long time, but &hellip;">
+	<meta name="description" content="Oct 3rd, 2013 emacs Emacs 24 AmpleZen Theme Last week I came across a theme for Emacs called Ample at
+https://github.com/jordonbiondo/ample-theme. I &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -95,6 +95,71 @@ in a long time, but &hellip;">
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-03T12:01:00-04:00" data-updated="true" itemprop="datePublished">Oct 3<span>rd</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/emacs/'>emacs</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/10/03/emacs-24-amplezen-theme/" itemprop="url">Emacs 24 AmpleZen Theme</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Last week I came across a theme for Emacs called Ample at
+<a href="https://github.com/jordonbiondo/ample-theme">https://github.com/jordonbiondo/ample-theme</a>.  I loved the colors and
+general feel of the theme and starting using it immediately.  It
+worked great and I really like it.  The only issues I had was that
+<a href="https://github.com/senny/rbenv.el" title="rbenv.el">rbenv.el</a>
+in the modeline was an ugly red and the theme didn&rsquo;t work in the
+terminal.  So I started poking at the theme code.  It is the first time I
+have ever opened up a theme and looked at tweaking it.</p>
+
+<p>Along the way, I started looking at other themes.  I kept coming back
+to zenburn-emacs at <a href="https://github.com/bbatsov/zenburn-emacs">https://github.com/bbatsov/zenburn-emacs</a>. I liked
+the way the code was organized and the little touches like
+automatically starting up
+<a href="http://elpa.gnu.org/packages/rainbow-mode.html" title="rainbow-mode">rainbow-mode</a>, which I had never used.</p>
+
+<p>So I decided to try and combining the colors from Ample and the code
+from Zenburn into one theme.  My result is available at
+<a href="https://github.com/mjwall/ample-zen">https://github.com/mjwall/ample-zen</a>.  Zenburn had a bigger palette
+than Ample, so I added in some colors.  I removed packages that I
+don&rsquo;t use, and added some, like rbenv, that I do.  For me, the
+modeline in the active window is important, so I tried to make that
+stand out.  It appears to work OK running Emacs in the terminal as well.</p>
+
+<p>Here is a screenshot</p>
+
+<p><img src="https://raw.github.com/mjwall/ample-zen/master/ample-zen.png" title="Ample Zen Screenshot" alt="Ample Zen Screenshot" /></p>
+
+<p>All the credit goes to Jordon Biondo for his colors in Ample and
+Bozhidar Batsov for his code in Zenburn-Emacs.  Ample-Zen is currently
+available in Marmalade and a pull request has been merged to MELPA.
+Read more about installation at <a href="https://github.com/mjwall/ample-zen#installation">https://github.com/mjwall/ample-zen#installation</a></p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -852,56 +917,6 @@ I tried to cover most commands I used.  If you need more unix reference, try som
 	<h1 class="title" itemprop="name"><a href="/blog/2008/07/30/moving-to-wordpress/" itemprop="url">Moving to Wordpress</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<p>Alright, I give.  Rails on shared hosting really sucks.  I&rsquo;ve seen reports of success with <a href="http://modrails.com/">Phusion Passenger</a>, but my <a href="http://refer.asmallorange.com/10815">host</a> doesn&rsquo;t support it yet.  I wrote about my some of this <a href="/?p=13">issues</a> I have had.  So welcome to wordpress.  Same theme, mostly, with less crashes.  Maybe this will encourage me to write more.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-02T13:55:00-04:00" data-updated="true" itemprop="datePublished">Apr 2<span>nd</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/merb/'>merb</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/04/02/merb-notes/" itemprop="url">Merb Notes</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Since my last post, I have been looking more and more at Merb.  Just some random notes</p>
-
-<ul>
-<li><p>Looks like Merb 0.9.2 got some fcgi <a href="http://github.com/wycats/merb-more/commit/b5467e5138b8c18c0c521a5fce5ea529f1a090d6">love</a>. That is what I want to try to replace rails on my shared host.</p></li>
-<li><p>Get on IRC if you need help – irc.freenode.net#merb.  Really, IRC.</p></li>
-<li><p>If you can’t stay on IRC, go to <a href="http://groups.google.com/group/merb">http://groups.google.com/group/merb</a> for a log</p></li>
-<li><p>Use these <a href="http://www.gweezlebur.com/2008/3/1/quickie-sake-tasks-for-merb-hackers">sake</a> tasks if you are running the latest.  <code>sudo sake merb:update merb:install</code> will update core, more and plugins</p></li>
-<li><p>merb-rspec is no longer in plugins, but included in core</p></li>
-<li><p>Watch this from <a href="http://mtnwestrubyconf2008.confreaks.com/02zygmuntowicz.html">Confreaks</a>.  Worth the investment.</p></li>
-<li><p>Most tutorials and articles are dated.  <a href="http://crazycool.co.uk/blog/2008/3/17/Adventures+in+Merb/">This</a> one helped though.</p></li>
-</ul>
-
-
-<p>Looking forward to more from merb….</p>
-
-<p>UPDATE:  Having some trouble with typo’s caching.  Going to repost this article.</p>
 
 		
 		
