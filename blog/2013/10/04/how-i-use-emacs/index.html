@@ -1,0 +1,486 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>How I use Emacs - mjwall.com</title>
+	<meta name="author" content="Michael Wall">
+
+	
+	<meta name="description" content="How I Use Emacs Been meaning to write a post about my current Emacs setup for a while to
+explain how I work with Emacs on both Mac and Linux. I am &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="mjwall.com" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://mjwall.com/blog/2013/10/04/how-i-use-emacs/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("mjwall@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+</div>
+<hgroup>
+  <h1><a href="/">mjwall.com</a></h1>
+</hgroup>
+
+<p class="subtitle">Just a guy and his computer</p>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+
+<section class="aboutme">
+  <p>
+    My ramblings about stuff I find interesting or would like to reference later.  Mostly tech stuff.
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/101436546762602464030" rel="author" title="Google+">Google+</a>
+		
+		
+		<a class="twitter" href="http://twitter.com/mjwalldotcom" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/mjwall" title="GitHub">GitHub</a>
+		
+		
+		<a class="coderwall" href="https://coderwall.com/mjwall" title="Coderwall">Coderwall</a>
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">How I Use Emacs</h1>
+	<div class="entry-content" itemprop="articleBody"><p>Been meaning to write a post about my current Emacs setup for a while to
+explain how I work with Emacs on both Mac and Linux. I am going to
+call this my <em>Emacs Workflow</em>.  I have been using this
+setup for over a year now with very few tweaks and it serves me well.
+I am currently using Emacs 24, but this setup worked fine for earlier
+versions.</p>
+
+<p>First, let me explain how I work and what I was looking for out of an
+Emacs Workflow.  I spend most of my time on the command line.  That
+is either a terminal or eshell running in Emacs, with really no rhyme
+or reason for which.  Although longer running things like tailing logs
+and stuff over ssh tends to crash Emacs so I typically do not do those
+things in eshell.  Having used vim for a long time, I got used to
+quickly opening a file, making an edit, and then closing it.  But I do
+find it helpful to have all the currently open files in Emacs available
+in buffers. Emacs daemon seemed to fit both of these, but I
+didn&rsquo;t like starting it up in my init.el or on login.</p>
+
+<p>Avdi Grim wrote an article at
+<a href="http://devblog.avdi.org/2011/10/27/running-emacs-as-a-server-emacs-reboot-15/">http://devblog.avdi.org/2011/10/27/running-emacs-as-a-server-emacs-reboot-15/</a>
+about how he launches Emacs and that got me started.  I hadn&rsquo;t used
+emacsclient very much before this.  The <code>-a ""</code> trick was exactly what
+I wanted to start the daemon.  Avdi uses this script to launch
+emacsclient and create a new frame.  By default, the terminal waits
+for you to close Emacs, but you can pass in -n to the ec script and
+return control back to the terminal immediately.</p>
+
+<h3>My &lsquo;Emacs Workflow&rsquo;</h3>
+
+<p>My workflow is a little different.  When a file is opened in the
+Windowed or GUI version of Emacs, I want to work on it and leave it open.
+Often times I am heading back to the terminal to run a command against the
+newly edited file, like <code>rake test</code> or <code>mvn package</code>.  That mean the
+terminal launching emacsclient shouldn&rsquo;t wait.  When there is a GUI
+version of emacs already running, I want to use that instead of
+opening a new frame.  When a GUI Emacs is open but minimized, I want
+to maximize it and then open the file there.</p>
+
+<p>For quick edits, I want to open the file quickly in Emacs in the
+current terminal, make my edit, and then close it.  Therefore, the
+terminal needs to wait for me to finish.</p>
+
+<h4>Sidebar</h4>
+
+<blockquote><p>This method for quick edits is how I did all my git commits before I
+took the time to learn magit.  If you haven&rsquo;t used magit, I highly
+recommend you take the time to learn it.  See
+<a href="http://magit.github.io/magit/magit.html">http://magit.github.io/magit/magit.html</a>.  This is why I
+<code>export editor=et</code> in my ~/.bashrc.</p></blockquote>
+
+<h3>Tools</h3>
+
+<p>So what I ended up with is 2 scripts, which I call <em>ec</em> and <em>et</em>,
+following Avdi&rsquo;s lead.  The former opens emacsclient in the GUI and
+returns control immediately to the shell. The latter opens emacs in
+the current terminal and waits. Because both scripts are backed by the
+same daemon, all open files are available as buffers in both cases.
+Both script will starts the daemon if it is not
+open.  The <code>ec</code> script has some extra code to switch focus as
+described in my workflow. Here are the scripts, which what I hope are
+useful comments.</p>
+
+<h4>ec</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># This script starts emacs daemon if it is not running, opens whatever file</span>
+</span><span class='line'><span class="c"># you pass in and changes the focus to emacs.  Without any arguments, it just</span>
+</span><span class='line'><span class="c"># opens the current buffer or *scratch* if nothing else is open.  The following</span>
+</span><span class='line'><span class="c"># example will open ~/.bashrc</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># ec ~/.bashrc</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># You can also pass it multiple files, it will open them all.  Unbury-buffer</span>
+</span><span class='line'><span class="c"># will cycle through those files in order</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># The compliment to the script is et, which opens emacs in the terminal</span>
+</span><span class='line'><span class="c"># attached to a daemon</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># If you want to execute elisp, pass in -e whatever.</span>
+</span><span class='line'><span class="c"># You may also want to stop the output from returning to the terminal, like</span>
+</span><span class='line'><span class="c"># ec -e &quot;(message \&quot;Hello\&quot;)&quot; &gt; /dev/null</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># emacsclient options for reference</span>
+</span><span class='line'><span class="c"># -a &quot;&quot; starts emacs daemon and reattaches</span>
+</span><span class='line'><span class="c"># -c creates a new frame</span>
+</span><span class='line'><span class="c"># -n returns control back to the terminal</span>
+</span><span class='line'><span class="c"># -e eval the script</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Number of current visible frames,</span>
+</span><span class='line'><span class="c"># Emacs daemon always has a visible frame called F1</span>
+</span><span class='line'>visible_frames<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  emacsclient -a <span class="s2">&quot;&quot;</span> -e <span class="s1">&#39;(length (visible-frame-list))&#39;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>change_focus<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  emacsclient -n -e <span class="s2">&quot;(select-frame-set-input-focus (selected-frame))&quot;</span> &gt; /dev/null
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># try switching to the frame incase it is just minimized</span>
+</span><span class='line'><span class="c"># will start a server if not running</span>
+</span><span class='line'><span class="nb">test</span> <span class="s2">&quot;$(visible_frames)&quot;</span> -eq <span class="s2">&quot;1&quot;</span> <span class="o">&amp;&amp;</span> change_focus
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$(visible_frames)&quot;</span> -lt  <span class="s2">&quot;2&quot;</span> <span class="o">]</span>; <span class="k">then</span> <span class="c"># need to create a frame</span>
+</span><span class='line'>  <span class="c"># -c $@ with no args just opens the scratch buffer</span>
+</span><span class='line'>  emacsclient -n -c <span class="s2">&quot;$@&quot;</span> <span class="o">&amp;&amp;</span> change_focus
+</span><span class='line'><span class="k">else</span> <span class="c"># there is already a visible frame besides the daemon, so</span>
+</span><span class='line'>  change_focus
+</span><span class='line'>  <span class="c"># -n $@ errors if there are no args</span>
+</span><span class='line'>  <span class="nb">test</span>  <span class="s2">&quot;$#&quot;</span> -ne <span class="s2">&quot;0&quot;</span> <span class="o">&amp;&amp;</span> emacsclient -n <span class="s2">&quot;$@&quot;</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>et</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Makes sure emacs daemon is running and opens the file in Emacs in</span>
+</span><span class='line'><span class="c"># the terminal.</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># If you want to execute elisp, use -e whatever, like so</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># et -e &quot;(message \&quot;Word up\&quot;)&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># You may want to redirect that to /dev/null if you don&#39;t want the</span>
+</span><span class='line'><span class="c"># return to printed on the terminal.  Also, just echoing a message</span>
+</span><span class='line'><span class="c"># may not be visible if Emacs then gives you a message about what</span>
+</span><span class='line'><span class="c"># to do when do with the frame</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># The compliment to this script is ec</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Emacsclient option reference</span>
+</span><span class='line'><span class="c"># -a &quot;&quot; starts emacs daemon and reattaches</span>
+</span><span class='line'><span class="c"># -t starts in terminal, since I won&#39;t be using the gui</span>
+</span><span class='line'><span class="c"># can also pass in -n if you want to have the shell return right away</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">exec </span>emacsclient -a <span class="s2">&quot;&quot;</span> -t <span class="s2">&quot;$@&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Github repo</h3>
+
+<p>These files can be found in dotfiles repo at
+<a href="https://github.com/mjwall/dotfiles">https://github.com/mjwall/dotfiles</a>.  There are also instructions on
+how I install Emacs on a
+<a href="https://github.com/mjwall/dotfiles#on-macosx">Mac</a> and
+<a href="https://github.com/mjwall/dotfiles#on-linux">Linux</a>.  Also in this
+repo is my ~/.emac.d configuration.   I keep everything together to
+make it as easy as possible to get setup on a new machine and keep
+multiple machines in sync.</p>
+
+<h4>Warning</h4>
+
+<blockquote><p>If you are on a Mac, it is important to get the newer version of
+Emacs and emacslient on the path correctly.  What has worked for me is
+referenced in the mac
+<a href="https://gist.github.com/mjwall/3fe935a8becb60dd3c4c">gist</a>. Likely
+there are other/better ways.</p></blockquote>
+
+<h3>Bonus, executing elisp</h3>
+
+<p>Another way I use these scripts is by passing in -e to execute
+arbitrary elisp code. For example, I have an alias setup in my bashrc
+to launch magit. Because it is using the same script, it takes
+advantage of launching the daemon if necessary and changing
+focus. Here is what it looks like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">magit</span><span class="o">=</span><span class="s1">&#39;ec -e &quot;(magit-status \&quot;$(pwd)\&quot;)&quot;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So in the terminal, I run <code>magit</code> and it launches Emacs and runs
+magit-status on the current directory.  This was inspired by a
+similiar tweet somewhere, but takes advantage of the rest of the <code>ec</code> script.</p>
+
+<h3>Stopping the Daemon</h3>
+
+<p>The last piece of this was a shell script to stop the daemon, which is
+used for example when I need to reload Emacs configs.  Sometimes
+shutdown on my Mac hangs while waiting for Emacs to close, so I tend
+to call this <code>es</code> script beforehand.  The script looks like this</p>
+
+<h4>es</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># simple script to shutdown the running Emacs daemon</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># emacsclient options for reference</span>
+</span><span class='line'><span class="c"># -a Alternate editor, runs bin/false in this case</span>
+</span><span class='line'><span class="c"># -e eval the script</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># If the server-process is bound and the server is in a good state, then kill</span>
+</span><span class='line'><span class="c"># the server</span>
+</span><span class='line'>
+</span><span class='line'>server_ok<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  emacsclient -a <span class="s2">&quot;false&quot;</span> -e <span class="s2">&quot;(boundp &#39;server-process)&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;t&quot;</span> <span class="o">==</span> <span class="s2">&quot;$(server_ok)&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">  </span><span class="nb">echo</span> <span class="s2">&quot;Shutting down Emacs server&quot;</span>
+</span><span class='line'>  <span class="c"># wasn&#39;t removing emacs from ALT-TAB on mac</span>
+</span><span class='line'>  <span class="c"># emacsclient -e &quot;(server-force-delete)&quot;</span>
+</span><span class='line'>  emacsclient -e <span class="s1">&#39;(kill-emacs)&#39;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'><span class="k">  </span><span class="nb">echo</span> <span class="s2">&quot;Emacs server not running&quot;</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Likely there is a good way to fix this hanging, but it doesn&rsquo;t bother
+me so I haven&rsquo;t dug deeper.</p>
+
+<h3>Wrap up</h3>
+
+<p>If you are still reading this, you may be thinking <em>&ldquo;This all makes me
+want to execute arbitrary elisp in a shell script for other
+things&rdquo;</em>. If so, and you looked at
+<a href="https://github.com/mjwall/dotfiles/blob/master/bin/ed.el">https://github.com/mjwall/dotfiles/blob/master/bin/ed.el</a>, you would
+see the following example of how to do that</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="o">#</span><span class="nv">!/usr/bin/env</span> <span class="nv">emacs</span> <span class="nv">--script</span>
+</span><span class='line'><span class="p">(</span><span class="nf">print</span> <span class="s">&quot;Hi mike&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;server</span><span class="p">)</span>
+</span><span class='line'><span class="p">(</span><span class="nf">print</span> <span class="p">(</span><span class="nf">server-running-p</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Imagine the possibilities.  Go through a git repo and change all tabs
+to spaces. I haven&rsquo;t really though of anything useful to do with this,
+but thought it was interesting.</p>
+
+<p>If you are not still reading this, you probably stopped because you
+thought all this was overkill.  Maybe you are right.</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - Michael Wall -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-3314515-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
