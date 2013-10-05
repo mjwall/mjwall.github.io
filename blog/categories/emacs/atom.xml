@@ -4,7 +4,7 @@
   <title><![CDATA[Category: emacs | mjwall.com]]></title>
   <link href="http://mjwall.com/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://mjwall.com/"/>
-  <updated>2013-10-04T13:12:42-04:00</updated>
+  <updated>2013-10-05T10:36:01-04:00</updated>
   <id>http://mjwall.com/</id>
   <author>
     <name><![CDATA[Michael Wall]]></name>
@@ -36,7 +36,7 @@ find it helpful to have all the currently open files in Emacs available
 in buffers. Emacs daemon seemed to fit both of these, but I
 didn&rsquo;t like starting it up in my init.el or on login.</p>
 
-<p>Avdi Grim wrote an article at
+<p>Avdi Grimm wrote an article at
 <a href="http://devblog.avdi.org/2011/10/27/running-emacs-as-a-server-emacs-reboot-15/">http://devblog.avdi.org/2011/10/27/running-emacs-as-a-server-emacs-reboot-15/</a>
 about how he launches Emacs and that got me started.  I hadn&rsquo;t used
 emacsclient very much before this.  The <code>-a ""</code> trick was exactly what
