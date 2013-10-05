@@ -25,7 +25,7 @@ find it helpful to have all the currently open files in Emacs available
 in buffers. Emacs daemon seemed to fit both of these, but I
 didn't like starting it up in my init.el or on login.
 
-Avdi Grim wrote an article at
+Avdi Grimm wrote an article at
 http://devblog.avdi.org/2011/10/27/running-emacs-as-a-server-emacs-reboot-15/
 about how he launches Emacs and that got me started.  I hadn't used
 emacsclient very much before this.  The `-a ""` trick was exactly what
