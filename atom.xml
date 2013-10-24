@@ -4,7 +4,7 @@
   <title><![CDATA[mjwall.com]]></title>
   <link href="http://mjwall.com/atom.xml" rel="self"/>
   <link href="http://mjwall.com/"/>
-  <updated>2013-10-05T10:36:01-04:00</updated>
+  <updated>2013-10-24T07:31:40-04:00</updated>
   <id>http://mjwall.com/</id>
   <author>
     <name><![CDATA[Michael Wall]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Accumulo Book Early Release]]></title>
+    <link href="http://mjwall.com/blog/2013/10/24/accumulo-book-early-release/"/>
+    <updated>2013-10-24T07:22:00-04:00</updated>
+    <id>http://mjwall.com/blog/2013/10/24/accumulo-book-early-release</id>
+    <content type="html"><![CDATA[<p>I am excited to announce our <a href="http://accumulo.apache.org/">Accumulo</a> book is finally in early
+release at <a href="http://shop.oreilly.com/product/0636920032304.do.">http://shop.oreilly.com/product/0636920032304.do.</a></p>
+
+<p><img src="http://akamaicovers.oreilly.com/images/0636920032304/rc_cat.gif" title="Accumulo Book Cover" alt="Accumulo Book Cover" /></p>
+
+<p>The animal on the cover is the Domesticated Yak.  Yep, that&rsquo;s right.  We
+got the &ldquo;Yak Book&rdquo;.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I use Emacs]]></title>
