@@ -8,7 +8,7 @@ categories:
 ---
 
 I am excited to announce our [Accumulo](http://accumulo.apache.org/) book is finally in early
-release at http://shop.oreilly.com/product/0636920032304.do.
+release at <http://shop.oreilly.com/product/0636920032304.do>.
 
 ![Accumulo Book Cover](http://akamaicovers.oreilly.com/images/0636920032304/rc_cat.gif
 "Accumulo Book Cover")
