@@ -4,7 +4,7 @@
   <title><![CDATA[mjwall.com]]></title>
   <link href="http://mjwall.com/atom.xml" rel="self"/>
   <link href="http://mjwall.com/"/>
-  <updated>2013-10-24T21:07:55-04:00</updated>
+  <updated>2015-07-15T19:54:38-04:00</updated>
   <id>http://mjwall.com/</id>
   <author>
     <name><![CDATA[Michael Wall]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Book Published]]></title>
+    <link href="http://mjwall.com/blog/2015/07/15/book-published/"/>
+    <updated>2015-07-15T18:23:00-04:00</updated>
+    <id>http://mjwall.com/blog/2015/07/15/book-published</id>
+    <content type="html"><![CDATA[<p>After way too long, our book has finally been published.  Check out the site at
+<a href="http://accumulobook.com">http://accumulobook.com</a>, which will link to where you can purchase a
+copy.</p>
+
+<p><img src="http://mjwall.com/images/6-books.png" title="Accumulo Books" alt="Accumulo Books" /></p>
+
+<p>Thanks to my coauthors Aaron Cordova and Billie Rinaldi for making
+this happen.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Accumulo Book Early Release]]></title>

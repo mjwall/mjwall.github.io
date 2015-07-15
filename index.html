@@ -7,8 +7,8 @@
 	<meta name="author" content="Michael Wall">
 
 	
-	<meta name="description" content="Oct 24th, 2013 accumulo Accumulo Book Early Release I am excited to announce our Accumulo book is finally in early
-release at http://shop.oreilly. &hellip;">
+	<meta name="description" content="Jul 15th, 2015 Book Published After way too long, our book has finally been published. Check out the site at
+http://accumulobook.com, which will &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -95,6 +95,44 @@ release at http://shop.oreilly. &hellip;">
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-07-15T18:23:00-04:00" data-updated="true" itemprop="datePublished">Jul 15<span>th</span>, 2015</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2015/07/15/book-published/" itemprop="url">Book Published</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>After way too long, our book has finally been published.  Check out the site at
+<a href="http://accumulobook.com">http://accumulobook.com</a>, which will link to where you can purchase a
+copy.</p>
+
+<p><img src="/images/6-books.png" title="Accumulo Books" alt="Accumulo Books" /></p>
+
+<p>Thanks to my coauthors Aaron Cordova and Billie Rinaldi for making
+this happen.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -982,82 +1020,6 @@ anything
 
 </article>
 
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-18T19:44:06-04:00" data-updated="true" itemprop="datePublished">Aug 18<span>th</span>, 2008</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/cruisecontrol/'>cruisecontrol</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2008/08/18/cruisecontrolrb-git-and-rails-21/" itemprop="url">Cruisecontrolrb, Git and Rails 2.1</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>I really love cruisecontrol.rb in a team environment.  The ability to run tests against every commit is great, and it is such fun being the &ldquo;build police&rdquo;.</p>
-
-<blockquote><p>Excuse me sir, can I see your license to commit please?</p></blockquote>
-
-<p>We can have some fun with that one.</p>
-
-<blockquote><p>This license expired just before the dotcom bubble</p>
-
-<p>You have a languague restriction here that says you can commit only while wearing vb.net</p>
-
-<p>I need to see some proof of build collision insurance.</p></blockquote>
-
-<p>But I digress. Sorry, back to the program.</p>
-
-<p>As rails grows, I have some questions.</p>
-
-<ol>
-<li><p> Where the heck is code for cruise control?</p></li>
-<li><p> Can I use git?</p></li>
-<li><p> Will it run against rails 2.1 since I am security conscience and have updated after the recent <a href="http://www.ruby-lang.org/en/news/2008/06/20/arbitrary-code-execution-vulnerabilities/">warnings</a> and <a href="http://www.ruby-lang.org/en/news/2008/08/08/multiple-vulnerabilities-in-ruby/">threats</a>?</p></li>
-</ol>
-
-
-<p>Let&rsquo;s do some research.  The code used to be at <a href="http://rubyforge.org/projects/cruisecontrolrb/">rubyforge</a>.  Looks like the code is still there.  However, according to this <a href="http://rubyforge.org/pipermail/cruisecontrolrb-users/2008-August/000560.html">post</a>, they are moving to github.  The link in that post has an extra *, but sure enough, you can find cruisecontrol.rb at <a href="http://github.com/thoughtworks/cruisecontrol.rb">http://github.com/thoughtworks/cruisecontrol.rb</a>.  Cool, now I know where to get it.</p>
-
-<p>What about git support?  A <a href="http://www.google.com/search?hl=en&amp;q=cruisecontrolrb+git&amp;btnG=Google+Search">google search</a>, turns up <a href="http://github.com/benburkert/cruisecontrolrb/tree/master">benburkert</a>&rsquo;s github branch.  Looks promising.  Searching git hub for <a href="http://github.com/search?q=cruisecontrolrb">cruisecontrol.rb</a> shows several forks, but these are all from rubyforge git.  I want it straight from thoughtworks.  Digging a little in the code shows it is already in the thoughtworks master.  There is even a mercurial adapter.  Let&rsquo;s give it a try.  Sure enough, it works just fine with</p>
-
-<pre><code>cruise add projectname -r file:///home/me/src/gitproject -s git
-</code></pre>
-
-<p>Run</p>
-
-<pre><code>cruise help add
-</code></pre>
-
-<p>for all the options.</p>
-
-<p>Great, 2 for 2.  Now what about support for Rails 2.1?   Unfortunately, it is not there.  Cruisecontrol.rb currently runs with rails 1.2.3, and a simple version change in environment.rb doesn&rsquo;t fix it.  (Didn&rsquo;t figure it would but I had to try it right?)   For all of us who have updated to ruby 1.8.7, we are stuck for now.  Ruby 1.8.7 only runs rails 2.1.  My <a href="http://www.mjwall.com/2008/08/multiple-versions-of-ruby-with-stow/">last</a> post about multiple version of ruby doesn&rsquo;t really help either.</p>
-
-<p>I did find this post answered by the team about porting cruisecontrol to <a href="http://www.nabble.com/Re:-Plans-to-upgrade-to-Rails-2.1--td18115378.html">merb</a>.  That sounds interesting indeed.</p>
-
-<p>Until then, who is working on a rails 2.1 version of cruisecontrol.rb?</p>
-
-		
-		
-	</div>
-
-</article>
-
 </div>
 <nav id="pagenavi">
     
@@ -1068,7 +1030,7 @@ anything
 </nav></div>
 			</div>
 			<footer id="footer" class="inner"><p>
-  Copyright &copy; 2013 - Michael Wall -
+  Copyright &copy; 2015 - Michael Wall -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
